@@ -1,8 +1,13 @@
 export const getErrorMessageFromResponseCode = (code) =>{
-    if(code === "404"){
+    const codeStr = String(code)
+    console.log(codeStr)
+    if(codeStr === "404"){
         return "url not found from API call"
-    }else if (code === "503"){
+    }else if (codeStr === "503"){
         return "Request not completed"
     }
-    return ("Some unknown error occured getting data: " + code)
+    else if (codeStr === "414"){
+        return "Request URI too long"
+    }
+    return ("Some unknown error occured getting data: " + codeStr)
 }

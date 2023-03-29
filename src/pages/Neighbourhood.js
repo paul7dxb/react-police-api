@@ -1,28 +1,29 @@
 import { useLoaderData, useParams } from "react-router-dom";
-import { getCrimesSummary } from "../util/GetCrimes";
+import CategoryTotalList from "../components/Crime/CategoryTotalsList";
+import { getCrimesYearSummary } from "../util/GetCrimes";
 
 const Neighbourhood = () => {
 	const params = useParams();
-	// console.log(params);
 
 	const loaderData = useLoaderData();
+	const yearSummaryData = loaderData.neighCrimes.data;
+	console.log("yearSummaryData")
+	console.log(yearSummaryData)
 
-	const summaryData = loaderData.neighCrimes.summaryData;
-	console.log("neighCrimes comp");
-	console.log(summaryData);
-
-	if (loaderData.neighCrimes) {
+	if (yearSummaryData) {
 		return (
 			<>
 				<h1>Neighbourhood Details</h1>
 				<h2>{params.neighbourhoodID}</h2>
-				<h3>Total Crime {summaryData.totalCrime}</h3>
-				<p>Start of data</p>
-				{summaryData.categoryTotals.map((elem) => (
-					<p key={elem[0]}>
-						{elem[0]} : {elem[1]}
-					</p>
-				))}
+				<CategoryTotalList yearSummaryData={yearSummaryData} />
+			</>
+		);
+	} else {
+		return (
+			<>
+				<h1>Neighbourhood Details</h1>
+				<h2>{params.neighbourhoodID}</h2>
+				<p>Summary data unavailable. {loaderData.neighCrimes.errorMessage}</p>
 			</>
 		);
 	}
@@ -46,20 +47,12 @@ export async function loader({ request, params }) {
 	);
 	if (neighBoundaryResponse.ok) {
 		boundaryPoly = await neighBoundaryResponse.json();
-
-		// console.log(boundaryPoly)
-		// console.log(boundaryPoly[0])
-		// console.log(boundaryPoly[0].latitude)
 	}
 
-	const neighCrimes = await getCrimesSummary({
+	const neighCrimes = await getCrimesYearSummary({
 		category: "all-crime",
-		polyBoundary: boundaryPoly,
-		date: "2022-08",
+		polyBoundary: boundaryPoly
 	});
-
-	console.log("neighCrimes");
-	console.log(neighCrimes);
 
 	return { neighCrimes };
 }

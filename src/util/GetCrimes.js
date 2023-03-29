@@ -1,6 +1,33 @@
+import { getLastYear } from "./ApiDatabaseInfo";
 import { getErrorMessageFromResponseCode } from "./errorMessages";
 
-export const getCrimesSummary = async (params) => {
+export const getCrimesYearSummary = async (params) => {
+	let queryDates = [];
+	queryDates = await getLastYear();
+	console.log("queryDates");
+	console.log(queryDates);
+
+    let errorMessage = null
+
+	let yearSummaryData = [];
+	for (let i = 0; i < queryDates.length; i++) {
+		let newParams = { ...params, date: queryDates[i] };
+		yearSummaryData.push(await getCrimesMonthSummary(newParams));
+        if(yearSummaryData[i].errorMessage){
+            console.log("error in year loop")
+            errorMessage = yearSummaryData[i].error
+        }
+	}
+	console.log(yearSummaryData);
+
+	// let newParams = { ...params, date: queryDates[5] };
+
+	// const returnData = await getCrimesMonthSummary(newParams);
+    
+	return {data: yearSummaryData, errorMessage }
+};
+
+export const getCrimesMonthSummary = async (params) => {
 	const apiQuery = createQuery(params);
 	let errorMessage = null;
 	let data = null;
@@ -19,7 +46,7 @@ export const getCrimesSummary = async (params) => {
 			const summaryData = countCategories(data);
 			// console.log(summaryData);
 
-			return { summaryData, errorMessage };
+			return { data: summaryData, errorMessage };
 		} else {
 			return {
 				data: null,
@@ -27,6 +54,7 @@ export const getCrimesSummary = async (params) => {
 			};
 		}
 	} catch (error) {
+		console.log(error);
 		return {
 			data: null,
 			errorMessage: getErrorMessageFromResponseCode(error.message),
@@ -53,7 +81,6 @@ const createQuery = (params) => {
 	let polyBoundaryQuery = "";
 	if (polyBoundaryArrayParam.length > 0) {
 		polyBoundaryQuery = polyArrayToString(polyBoundaryArrayParam);
-		// console.log(polyBoundaryQuery);
 	}
 
 	let dateQueryString = "&";
@@ -67,13 +94,16 @@ const createQuery = (params) => {
 };
 
 const polyArrayToString = (polyArray) => {
+	// console.log("polyArray.length");
 	// console.log(polyArray.length);
+	const steps = Math.floor(polyArray.length / 100) + 1;
+	// console.log(steps);
 	let polyQueryString =
 		"poly=" +
 		shortenLatLng(polyArray[0].latitude) +
 		"," +
 		shortenLatLng(polyArray[0].longitude);
-	for (let i = 0; i < polyArray.length; i++) {
+	for (let i = 0; i < polyArray.length; i += steps) {
 		polyQueryString +=
 			":" +
 			shortenLatLng(polyArray[i].latitude) +

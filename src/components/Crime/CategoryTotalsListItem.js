@@ -1,5 +1,16 @@
-const CategoryTotalListItem = () => {
-    return <h2>Cat Item</h2>
-}
+const CategoryTotalListItem = (props) => {
+	const summaryData = props.summaryData;
 
-export default CategoryTotalListItem
+	return (
+		<>
+			<h3>Total Crime {summaryData.totalCrime}</h3>
+			{summaryData.categoryTotals.map((elem) => (
+				<p key={elem[0]}>
+					{elem[0]} : {elem[1]}
+				</p>
+			))}
+		</>
+	);
+};
+
+export default CategoryTotalListItem;
