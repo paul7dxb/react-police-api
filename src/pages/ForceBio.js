@@ -1,7 +1,7 @@
-import { Link, json, useLoaderData, useParams } from "react-router-dom";
-import { getAllNeighbourhoods } from "../../util/AllNeighbourhoods";
-import { getErrorMessageFromResponseCode } from "../../util/errorMessages";
-import NeighbourhoodList from "./NeighbourhoodList";
+import { useLoaderData, useParams } from "react-router-dom";
+import { getAllNeighbourhoods } from "../util/AllNeighbourhoods";
+import { getErrorMessageFromResponseCode } from "../util/errorMessages";
+import NeighbourhoodList from "../components/Force/NeighbourhoodList";
 
 
 const ForceBio = (props) => {

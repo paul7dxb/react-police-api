@@ -10,7 +10,7 @@ const NeighbourhoodList = (props) => {
 		<ul>
 			{neighbourhoodData.map((elem) => (
 				<li key={elem.id}>
-					<Link to={elem.name}>{elem.name}</Link>
+					<Link to={elem.id}>{elem.name}</Link>
 				</li>
 			))}
 		</ul>

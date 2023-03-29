@@ -5,8 +5,8 @@ import RootLayout from "./pages/RootLayout";
 import Forces from "./pages/Forces";
 import ForceBio, {
 	loader as forceBioLoader,
-} from "./components/Force/ForceBio";
-import Neighbourhood from "./pages/Neighbourhood"
+} from "./pages/ForceBio";
+import Neighbourhood, {loader as neighbourhoodLoader} from "./pages/Neighbourhood"
 
 //Create router
 const router = createBrowserRouter([
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
 								element: <ForceBio />,
 							},{
 								path: ":neighbourhoodID",
+								loader: neighbourhoodLoader,
 								element: <Neighbourhood/>
 							}
 						],
