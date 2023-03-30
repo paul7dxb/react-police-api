@@ -17,7 +17,7 @@ const CategoryTotalList = (props) => {
 			{yearSummaryData
 				? yearSummaryData.map(({data, errorMessage}) => (
 						<CategoryTotalListItem summaryData={data} errorMessage={errorMessage}/>
-                        // <p>Jiib data</p>
+
                 ))
 				: undefined}
 
