@@ -1,29 +1,42 @@
 import { useLoaderData, useParams } from "react-router-dom";
-import CategoryTotalList from "../components/Crime/CategoryTotalsList";
+// import CategoryTotalList from "../components/Crime/CategoryTotalsList";
 import { getCrimesYearSummary } from "../util/GetCrimes";
+import StackedBarYear from "../Charts/StackedBarYear";
 
 const Neighbourhood = () => {
 	const params = useParams();
 
 	const loaderData = useLoaderData();
 	const yearSummaryData = loaderData.neighCrimes.data;
-	console.log("yearSummaryData")
-	console.log(yearSummaryData)
+	const barChartSeries = loaderData.neighCrimes.barChartSeries;
+	const barChartLabels = loaderData.neighCrimes.barChartLabels;
+	const areaName = loaderData.areaName;
+
+	console.log(areaName);
+	// console.log(yearSummaryData);
+	// console.log("component data");
+	// console.log(loaderData.neighCrimes.barChartSeries);
+	// console.log(loaderData.neighCrimes.barChartLabels);
+	// console.log("component data");
 
 	if (yearSummaryData) {
 		return (
 			<>
 				<h1>Neighbourhood Details</h1>
-				<h2>{params.neighbourhoodID}</h2>
-				<CategoryTotalList yearSummaryData={yearSummaryData} />
+				<h2>{areaName}</h2>
+				<StackedBarYear barChartSeries={barChartSeries} barChartLabels={barChartLabels} />
+				{/* <CategoryTotalList yearSummaryData={yearSummaryData} /> */}
 			</>
 		);
 	} else {
 		return (
 			<>
 				<h1>Neighbourhood Details</h1>
-				<h2>{params.neighbourhoodID}</h2>
-				<p>Summary data unavailable. {loaderData.neighCrimes.errorMessage}</p>
+				<h2>{areaName}</h2>
+				<p>
+					Summary data unavailable.{" "}
+					{loaderData.neighCrimes.errorMessage}
+				</p>
 			</>
 		);
 	}
@@ -34,9 +47,20 @@ export default Neighbourhood;
 export async function loader({ request, params }) {
 	let returnCode = null;
 	let boundaryPoly = null;
+	let areaName = null;
 
 	const forceID = params.forceID;
 	const neighbourhoodID = params.neighbourhoodID;
+
+	const forceBioResponse = await fetch(
+		"https://data.police.uk/api/" + 	forceID +
+		"/" +
+		neighbourhoodID
+	);
+	if (forceBioResponse.ok) {
+		const areaInfo = await forceBioResponse.json();
+		areaName = areaInfo.name
+	}
 
 	const neighBoundaryResponse = await fetch(
 		"https://data.police.uk/api/" +
@@ -51,8 +75,8 @@ export async function loader({ request, params }) {
 
 	const neighCrimes = await getCrimesYearSummary({
 		category: "all-crime",
-		polyBoundary: boundaryPoly
+		polyBoundary: boundaryPoly,
 	});
 
-	return { neighCrimes };
+	return { neighCrimes,areaName };
 }

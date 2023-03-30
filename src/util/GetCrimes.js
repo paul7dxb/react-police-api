@@ -1,5 +1,6 @@
 import { getLastYear } from "./ApiDatabaseInfo";
 import { getErrorMessageFromResponseCode } from "./errorMessages";
+import { convertYearDataToChartSeries } from "./GraphFunctions";
 
 export const getCrimesYearSummary = async (params) => {
 	let queryDates = [];
@@ -7,28 +8,41 @@ export const getCrimesYearSummary = async (params) => {
 	console.log("queryDates");
 	console.log(queryDates);
 
-    let errorMessage = null
+	let errorMessage = null;
 
 	let yearSummaryData = [];
+	const allCategoriesSet = new Set();
+
 	for (let i = 0; i < queryDates.length; i++) {
 		let newParams = { ...params, date: queryDates[i] };
-		yearSummaryData.push(await getCrimesMonthSummary(newParams));
-        if(yearSummaryData[i].errorMessage){
-            console.log("error in year loop")
-            errorMessage = yearSummaryData[i].error
-        }
+		let newMonthData = await getCrimesMonthSummary(newParams);
+		if (newMonthData.errorMessage) {
+			console.log("error in year loop");
+			errorMessage = yearSummaryData[i].error;
+		} else {
+			//Extract categories
+			newMonthData.data.categories.forEach(
+				allCategoriesSet.add,
+				allCategoriesSet
+			);
+			// console.log(allCategoriesSet)
+			yearSummaryData.push(newMonthData.data.crimes);
+		}
 	}
+
+	// Used for data series
+	const allCategoriesArray = Array.from(allCategoriesSet);
+
 	console.log(yearSummaryData);
 
-	// let newParams = { ...params, date: queryDates[5] };
+	const barChartSeries = convertYearDataToChartSeries(yearSummaryData, allCategoriesArray);
 
-	// const returnData = await getCrimesMonthSummary(newParams);
-    
-	return {data: yearSummaryData, errorMessage }
+	return { data: yearSummaryData, errorMessage, barChartSeries, barChartLabels: queryDates };
 };
 
 export const getCrimesMonthSummary = async (params) => {
 	const apiQuery = createQuery(params);
+	const date = params.date;
 	let errorMessage = null;
 	let data = null;
 	let returnCode = null;
@@ -46,11 +60,12 @@ export const getCrimesMonthSummary = async (params) => {
 			const summaryData = countCategories(data);
 			// console.log(summaryData);
 
-			return { data: summaryData, errorMessage };
+			return { data: summaryData, errorMessage, date };
 		} else {
 			return {
 				data: null,
 				errorMessage: getErrorMessageFromResponseCode(returnCode),
+				date,
 			};
 		}
 	} catch (error) {
@@ -58,6 +73,7 @@ export const getCrimesMonthSummary = async (params) => {
 		return {
 			data: null,
 			errorMessage: getErrorMessageFromResponseCode(error.message),
+			date,
 		};
 	}
 };
@@ -124,6 +140,7 @@ const shortenLatLng = (inputNum) => {
 const countCategories = (crimeDataArray) => {
 	// console.log(crimeDataArray);
 	let crimes = {};
+	let categories = [];
 	// let crimesArr = [];
 
 	let totalCrimeTally = 0;
@@ -134,13 +151,18 @@ const countCategories = (crimeDataArray) => {
 			crimes[crimeDataArray[key].category] += 1;
 		} else {
 			crimes[crimeDataArray[key].category] = 1;
+			categories.push(crimeDataArray[key].category);
 		}
 
 		totalCrimeTally++;
 	}
 	// console.log("totalled");
 	// console.log(crimes);
-	const crimesArr = Object.keys(crimes).map((key) => [key, crimes[key]]);
+	// const crimesArr = Object.keys(crimes).map((key) => [key, crimes[key]]);
 
-	return { categoryTotals: crimesArr, totalCrime: totalCrimeTally };
+	return {
+		// totalCrime: totalCrimeTally,
+		categories,
+		crimes,
+	};
 };
