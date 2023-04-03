@@ -4,11 +4,31 @@ const StackedBarYear = (props) => {
 	const barChartSeries = props.barChartSeries;
 	const barChartLabels = props.barChartLabels;
 
+	console.log("barChartSeries");
+	console.log(barChartSeries);
+
 	const horizChartOptions = {
 		chart: {
 			type: "bar",
 			height: 350,
 			stacked: true,
+			events: {
+				xAxisLabelClick: function (event, chartContext, config) {
+					// Axis Label selected
+					let selectedDate = barChartLabels[config.labelIndex];
+					props.onClick({ date: selectedDate });
+				},
+				dataPointSelection: function (event, chartContext, config) {
+					// Specifc Data bar chosen
+					let selectedData = barChartLabels[config.dataPointIndex];
+					let selectedCategory =
+						barChartSeries[config.seriesIndex].name;
+					props.onClick({
+						date: selectedData,
+						category: selectedCategory,
+					});
+				},
+			},
 		},
 		plotOptions: {
 			bar: {
@@ -94,3 +114,5 @@ const StackedBarYear = (props) => {
 };
 
 export default StackedBarYear;
+
+

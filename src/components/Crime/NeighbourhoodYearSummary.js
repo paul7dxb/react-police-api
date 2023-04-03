@@ -25,8 +25,7 @@ const NeighbourhoodYearSummary = (props) => {
 		fetchYearDataHandler();
 	}, [fetchYearDataHandler]);
 
-	console.log("yearData");
-	console.log(yearData);
+
 
 	if (isLoading) {
 		return <h1>Loading data...</h1>;
@@ -37,6 +36,7 @@ const NeighbourhoodYearSummary = (props) => {
 			<StackedBarYear
 				barChartSeries={yearData.barChartSeries}
 				barChartLabels={yearData.barChartLabels}
+                onClick={yearGraphClickedHandler}
 			/>
 		);
 	} else {
@@ -50,3 +50,13 @@ const NeighbourhoodYearSummary = (props) => {
 };
 
 export default NeighbourhoodYearSummary;
+
+const yearGraphClickedHandler = ({ date, category }) => {
+	if (category) {
+		// Specific data selected
+		console.log("date: " + date + " category: " + category);
+	} else {
+		// Axis data selected
+		console.log("date: " + date);
+	}
+};
