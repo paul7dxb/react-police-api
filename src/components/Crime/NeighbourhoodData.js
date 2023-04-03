@@ -3,7 +3,7 @@ import { getCrimesYearSummary } from "../../util/GetCrimes";
 import StackedBarYear from "../Charts/StackedBarYear";
 import BarChartMonth from "../Charts/BarChartMonth";
 import { useParams } from "react-router-dom";
-import CrimeList from "./CrimeList";
+// import CrimeList from "./CrimeList";
 
 const NeighbourhoodYearSummary = (props) => {
 
@@ -15,7 +15,7 @@ const NeighbourhoodYearSummary = (props) => {
 
 	// Graph Selections
 	const [refinedRow, setRefinedRow] = useState(null);
-	const [refinedDataPoint, setRefinedDataPoint] = useState(null);
+	// const [refinedDataPoint, setRefinedDataPoint] = useState(null);
 
 	const fetchYearDataHandler = useCallback(async () => {
 		try {
@@ -48,7 +48,7 @@ const NeighbourhoodYearSummary = (props) => {
 				break;
 			case "dataClick":
 				console.log("dataClick " + date +  " : " + category)
-				setRefinedDataPoint({date, category, polyBoundaryQuery: yearData.polyBoundaryQuery})
+				props.setCatDateParams({date, category})
 				break;
 		}
 		console.log(yearData)
@@ -68,7 +68,7 @@ const NeighbourhoodYearSummary = (props) => {
 					onClick={yearGraphClickedHandler}
 				/>
 				{refinedRow ? <BarChartMonth date={refinedRow.date} barChartSeries={refinedRow.categoryTotals} barChartLabels={yearData.allCategoriesArray} /> : undefined }
-				{refinedDataPoint ? <CrimeList useLessProp={"234"} queryParams={refinedDataPoint}  /> : undefined}
+				{/* {refinedDataPoint ? <CrimeList useLessProp={"234"} queryParams={refinedDataPoint}  /> : undefined} */}
 			</>
 		);
 	} else {

@@ -12,8 +12,8 @@ const CrimeList = (props) => {
         <h1>First</h1>
         <h1>{queryParams.date}</h1>
         <h1>{queryParams.category}</h1>
-        <p>{queryParams.polyBoundaryQuery}</p>
-        <h1>{queryParams.date}</h1>
+        {/* <p>{queryParams.polyBoundaryQuery}</p> */}
+        {/* <h1>{queryParams.date}</h1> */}
         </>
     )
     } else{

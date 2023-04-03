@@ -1,20 +1,50 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import NeighbourhoodData from "../components/Crime/NeighbourhoodData";
 import { polyArrayToString } from "../util/ApiHelperFuncs";
+import { useEffect, useState } from "react";
+import { getCrimesMonthDetail } from "../util/GetCrimes";
 
-const Neighbourhood = () => {
+const Neighbourhood = (props) => {
 	const loaderData = useLoaderData();
 	const polyBoundaryQuery = loaderData.polyBoundaryQuery;
 	const areaName = loaderData.areaName;
+	const [catDateParams, setCatDateParams] = useState({
+		date: null,
+		category: null,
+	});
+	const [catDateData, setCatDateData] = useState(null);
 
 	console.log(areaName);
+
+	const getMonthCrimes = async () => {
+		const monthsCrime = await getCrimesMonthDetail({
+			date: catDateParams.date,
+			category: catDateParams.category,
+			polyBoundaryQuery: polyBoundaryQuery,
+		});
+		setCatDateData(monthsCrime);
+	};
+
+	useEffect(() => {
+		if (catDateParams.date) {
+			console.log("catDateParams")
+			console.log(catDateParams)
+			getMonthCrimes();
+		}
+	}, [catDateParams]);
+
+	console.log("catDateData");
+	console.log(catDateData);
 
 	if (polyBoundaryQuery) {
 		return (
 			<>
 				<h1>Neighbourhood Details</h1>
 				<h2>{areaName}</h2>
-				<NeighbourhoodData polyBoundaryQuery={polyBoundaryQuery} />
+				<NeighbourhoodData
+					polyBoundaryQuery={polyBoundaryQuery}
+					setCatDateParams={setCatDateParams}
+				/>
 			</>
 		);
 	} else {
@@ -62,7 +92,7 @@ export async function loader({ request, params }) {
 		boundaryPoly = await neighBoundaryResponse.json();
 		if (boundaryPoly.length > 0) {
 			console.log("polyBoundaryQuerydoodoo");
-			
+
 			polyBoundaryQuery = polyArrayToString(boundaryPoly);
 			console.log(polyBoundaryQuery);
 		}
