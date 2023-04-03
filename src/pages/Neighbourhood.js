@@ -1,15 +1,17 @@
 import { useLoaderData, useParams } from "react-router-dom";
 // import CategoryTotalList from "../components/Crime/CategoryTotalsList";
+import NeighbourhoodYearSummary from "../components/Crime/NeighbourhoodYearSummary";
 import { getCrimesYearSummary } from "../util/GetCrimes";
-import StackedBarYear from "../Charts/StackedBarYear";
+import StackedBarYear from "../components/Charts/StackedBarYear";
 
 const Neighbourhood = () => {
 	const params = useParams();
 
 	const loaderData = useLoaderData();
-	const yearSummaryData = loaderData.neighCrimes.data;
-	const barChartSeries = loaderData.neighCrimes.barChartSeries;
-	const barChartLabels = loaderData.neighCrimes.barChartLabels;
+	// const yearSummaryData = loaderData.neighCrimes.data;
+	// const barChartSeries = loaderData.neighCrimes.barChartSeries;
+	// const barChartLabels = loaderData.neighCrimes.barChartLabels;
+	const boundaryPoly = loaderData.boundaryPoly;
 	const areaName = loaderData.areaName;
 
 	console.log(areaName);
@@ -19,12 +21,13 @@ const Neighbourhood = () => {
 	// console.log(loaderData.neighCrimes.barChartLabels);
 	// console.log("component data");
 
-	if (yearSummaryData) {
+	if (boundaryPoly) {
 		return (
 			<>
 				<h1>Neighbourhood Details</h1>
 				<h2>{areaName}</h2>
-				<StackedBarYear barChartSeries={barChartSeries} barChartLabels={barChartLabels} />
+				<NeighbourhoodYearSummary boundaryPoly={boundaryPoly}  />
+				{/* <StackedBarYear barChartSeries={barChartSeries} barChartLabels={barChartLabels} /> */}
 				{/* <CategoryTotalList yearSummaryData={yearSummaryData} /> */}
 			</>
 		);
@@ -73,10 +76,11 @@ export async function loader({ request, params }) {
 		boundaryPoly = await neighBoundaryResponse.json();
 	}
 
-	const neighCrimes = await getCrimesYearSummary({
-		category: "all-crime",
-		polyBoundary: boundaryPoly,
-	});
+	// const neighCrimes = await getCrimesYearSummary({
+	// 	category: "all-crime",
+	// 	polyBoundary: boundaryPoly,
+	// });
 
-	return { neighCrimes,areaName };
+	// return { neighCrimes, areaName, boundaryPoly };
+	return { areaName, boundaryPoly };
 }
