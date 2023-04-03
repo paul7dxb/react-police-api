@@ -2,8 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { getCrimesYearSummary } from "../../util/GetCrimes";
 import StackedBarYear from "../Charts/StackedBarYear";
 import BarChartMonth from "../Charts/BarChartMonth";
+import { useParams } from "react-router-dom";
+import CrimeList from "./CrimeList";
 
 const NeighbourhoodYearSummary = (props) => {
+
+
 	// Year Summary Data
 	const [yearData, setYearData] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +21,7 @@ const NeighbourhoodYearSummary = (props) => {
 		try {
 			const response = await getCrimesYearSummary({
 				category: "all-crime",
-				polyBoundary: props.boundaryPoly,
+				polyBoundaryQuery: props.polyBoundaryQuery,
 			});
 			setYearData(response);
 			setapiError(response.errorMessage);
@@ -36,20 +40,15 @@ const NeighbourhoodYearSummary = (props) => {
 		switch(type){
 			case "axisClick":
 				console.log("axisClick " + date + " #: " + labelIndex )
-				// setRefinedRow({date})
-				// Get Data for month
 				let categoryTotals = [];
 				yearData.barChartSeries.forEach(function (arrayItem) {
-					// console.log(arrayItem.name)
-					// console.log(arrayItem.data[labelIndex])
-					// categoryTotals.push({name: arrayItem.name , data: arrayItem.data[labelIndex]})
 					categoryTotals.push(arrayItem.data[labelIndex])
 				});
 				setRefinedRow({date, categoryTotals})
 				break;
 			case "dataClick":
 				console.log("dataClick " + date +  " : " + category)
-				setRefinedDataPoint({date,category})
+				setRefinedDataPoint({date, category, polyBoundaryQuery: yearData.polyBoundaryQuery})
 				break;
 		}
 		console.log(yearData)
@@ -69,6 +68,7 @@ const NeighbourhoodYearSummary = (props) => {
 					onClick={yearGraphClickedHandler}
 				/>
 				{refinedRow ? <BarChartMonth date={refinedRow.date} barChartSeries={refinedRow.categoryTotals} barChartLabels={yearData.allCategoriesArray} /> : undefined }
+				{refinedDataPoint ? <CrimeList useLessProp={"234"} queryParams={refinedDataPoint}  /> : undefined}
 			</>
 		);
 	} else {

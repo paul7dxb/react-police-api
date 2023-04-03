@@ -1,22 +1,20 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import NeighbourhoodData from "../components/Crime/NeighbourhoodData";
+import { polyArrayToString } from "../util/ApiHelperFuncs";
 
 const Neighbourhood = () => {
-	const params = useParams();
-
 	const loaderData = useLoaderData();
-	const boundaryPoly = loaderData.boundaryPoly;
+	const polyBoundaryQuery = loaderData.polyBoundaryQuery;
 	const areaName = loaderData.areaName;
 
 	console.log(areaName);
 
-
-	if (boundaryPoly) {
+	if (polyBoundaryQuery) {
 		return (
 			<>
 				<h1>Neighbourhood Details</h1>
 				<h2>{areaName}</h2>
-				<NeighbourhoodData boundaryPoly={boundaryPoly}   />
+				<NeighbourhoodData polyBoundaryQuery={polyBoundaryQuery} />
 			</>
 		);
 	} else {
@@ -34,25 +32,21 @@ const Neighbourhood = () => {
 
 export default Neighbourhood;
 
-
-
 export async function loader({ request, params }) {
-	let returnCode = null;
+	// let returnCode = null;
 	let boundaryPoly = null;
 	let areaName = null;
-	let errorMessage = null
+	let errorMessage = null;
 
 	const forceID = params.forceID;
 	const neighbourhoodID = params.neighbourhoodID;
 
 	const forceBioResponse = await fetch(
-		"https://data.police.uk/api/" + 	forceID +
-		"/" +
-		neighbourhoodID
+		"https://data.police.uk/api/" + forceID + "/" + neighbourhoodID
 	);
 	if (forceBioResponse.ok) {
 		const areaInfo = await forceBioResponse.json();
-		areaName = areaInfo.name
+		areaName = areaInfo.name;
 	}
 
 	const neighBoundaryResponse = await fetch(
@@ -63,11 +57,18 @@ export async function loader({ request, params }) {
 			"/boundary"
 	);
 
+	let polyBoundaryQuery = "";
 	if (neighBoundaryResponse.ok) {
 		boundaryPoly = await neighBoundaryResponse.json();
+		if (boundaryPoly.length > 0) {
+			console.log("polyBoundaryQuerydoodoo");
+			
+			polyBoundaryQuery = polyArrayToString(boundaryPoly);
+			console.log(polyBoundaryQuery);
+		}
 	} else {
-		errorMessage = "Error Loading Neighbourhood data"
+		errorMessage = "Error Loading Neighbourhood data";
 	}
 
-	return { areaName, boundaryPoly, errorMessage };
+	return { areaName, polyBoundaryQuery, errorMessage };
 }

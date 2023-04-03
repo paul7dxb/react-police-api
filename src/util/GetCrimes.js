@@ -15,16 +15,19 @@ export const getCrimesYearSummary = async (params) => {
 	const allCategoriesSet = new Set();
 
 	// Reduce polyboundary array to string that fits query length
-	const polyBoundaryArrayParam = params.polyBoundary
-		? params.polyBoundary
+	const polyBoundaryQuery = params.polyBoundaryQuery
+		? params.polyBoundaryQuery
 		: null;
-	let polyBoundaryQuery = "";
-	if (polyBoundaryArrayParam.length > 0) {
-		polyBoundaryQuery = polyArrayToString(polyBoundaryArrayParam);
-	}
+
+		console.log("polyBoundaryQuery")
+		console.log(polyBoundaryQuery)
 
 	for (let i = 0; i < queryDates.length; i++) {
-		let newParams = { category: params.category, date: queryDates[i], polyBoundaryQuery };
+		let newParams = {
+			category: params.category,
+			date: queryDates[i],
+			polyBoundaryQuery,
+		};
 		let newMonthData = await getCrimesMonthSummary(newParams);
 		if (newMonthData.errorMessage) {
 			console.log("error in year loop");
@@ -55,7 +58,7 @@ export const getCrimesYearSummary = async (params) => {
 		errorMessage,
 		barChartSeries,
 		barChartLabels: queryDates,
-		allCategoriesArray
+		allCategoriesArray,
 	};
 };
 
@@ -115,39 +118,13 @@ const createQuery = (params) => {
 		dateQueryString += "date=" + dateParam;
 	}
 
-	queryString += categoryQueryString + params.polyBoundaryQuery + dateQueryString;
+	queryString +=
+		categoryQueryString + params.polyBoundaryQuery + dateQueryString;
 	// console.log("createQuery: queryString");
 	// console.log(queryString);
 	return queryString;
 };
 
-const polyArrayToString = (polyArray) => {
-	// console.log("polyArray.length");
-	// console.log(polyArray.length);
-	const steps = Math.floor(polyArray.length / 100) + 1;
-	// console.log(steps);
-	let polyQueryString =
-		"poly=" +
-		shortenLatLng(polyArray[0].latitude) +
-		"," +
-		shortenLatLng(polyArray[0].longitude);
-	for (let i = 0; i < polyArray.length; i += steps) {
-		polyQueryString +=
-			":" +
-			shortenLatLng(polyArray[i].latitude) +
-			"," +
-			shortenLatLng(polyArray[i].longitude);
-	}
-	return polyQueryString;
-};
-
-const shortenLatLng = (inputNum) => {
-	const desiredLen = 9;
-	const inputStr = inputNum.toString();
-	return inputStr.length > desiredLen
-		? inputStr.slice(0, desiredLen - 1)
-		: inputStr;
-};
 
 const countCategories = (crimeDataArray) => {
 	// console.log(crimeDataArray);
