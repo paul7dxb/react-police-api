@@ -2,19 +2,29 @@ import { getLastYear } from "./ApiDatabaseInfo";
 import { getErrorMessageFromResponseCode } from "./errorMessages";
 import { convertYearDataToChartSeries } from "./GraphFunctions";
 
+// Params category, polyBoundary
 export const getCrimesYearSummary = async (params) => {
 	let queryDates = [];
 	queryDates = await getLastYear();
 	console.log("queryDates");
-	console.log(queryDates);
+	console.log(params);
 
 	let errorMessage = null;
 
 	let yearSummaryData = [];
 	const allCategoriesSet = new Set();
 
+	// Reduce polyboundary array to string that fits query length
+	const polyBoundaryArrayParam = params.polyBoundary
+		? params.polyBoundary
+		: null;
+	let polyBoundaryQuery = "";
+	if (polyBoundaryArrayParam.length > 0) {
+		polyBoundaryQuery = polyArrayToString(polyBoundaryArrayParam);
+	}
+
 	for (let i = 0; i < queryDates.length; i++) {
-		let newParams = { ...params, date: queryDates[i] };
+		let newParams = { category: params.category, date: queryDates[i], polyBoundaryQuery };
 		let newMonthData = await getCrimesMonthSummary(newParams);
 		if (newMonthData.errorMessage) {
 			console.log("error in year loop");
@@ -35,9 +45,17 @@ export const getCrimesYearSummary = async (params) => {
 
 	console.log(yearSummaryData);
 
-	const barChartSeries = convertYearDataToChartSeries(yearSummaryData, allCategoriesArray);
+	const barChartSeries = convertYearDataToChartSeries(
+		yearSummaryData,
+		allCategoriesArray
+	);
 
-	return { data: yearSummaryData, errorMessage, barChartSeries, barChartLabels: queryDates };
+	return {
+		data: yearSummaryData,
+		errorMessage,
+		barChartSeries,
+		barChartLabels: queryDates,
+	};
 };
 
 export const getCrimesMonthSummary = async (params) => {
@@ -80,9 +98,6 @@ export const getCrimesMonthSummary = async (params) => {
 
 const createQuery = (params) => {
 	const categoryParam = params.category ? params.category : null;
-	const polyBoundaryArrayParam = params.polyBoundary
-		? params.polyBoundary
-		: null;
 	const dateParam = params.date ? params.date : null;
 
 	let queryString = "https://data.police.uk/api/crimes-street/";
@@ -94,17 +109,13 @@ const createQuery = (params) => {
 		categoryQueryString = "all-crime?";
 	}
 
-	let polyBoundaryQuery = "";
-	if (polyBoundaryArrayParam.length > 0) {
-		polyBoundaryQuery = polyArrayToString(polyBoundaryArrayParam);
-	}
-
 	let dateQueryString = "&";
 	if (dateParam) {
 		dateQueryString += "date=" + dateParam;
 	}
 
-	queryString += categoryQueryString + polyBoundaryQuery + dateQueryString;
+	queryString += categoryQueryString + params.polyBoundaryQuery + dateQueryString;
+	// console.log("createQuery: queryString");
 	// console.log(queryString);
 	return queryString;
 };
