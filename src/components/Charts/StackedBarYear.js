@@ -54,12 +54,31 @@ const StackedBarYear = (props) => {
 		},
 		fill: {
 			opacity: 1,
+			// colors:['#F44336', '#E91E63', '#9C27B0']
 		},
 		legend: {
 			position: "top",
 			horizontalAlign: "left",
 			offsetX: 40,
 		},
+		colors: [
+			"#FF4136",
+			"#0074D9",
+			"#2ECC40",
+			"#FFDC00",
+			"#7FDBFF",
+			"#FF851B",
+			"#B10DC9",
+			"#FF4136",
+			"#0074D9",
+			"#2ECC40",
+			"#F012BE",
+			"#3D9970",
+			"#FFD700",
+			"#85144b",
+			"#FF7F50",
+			"#8B008B",
+		],
 	};
 
 	return (

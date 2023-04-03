@@ -1,25 +1,15 @@
 import { useLoaderData, useParams } from "react-router-dom";
-// import CategoryTotalList from "../components/Crime/CategoryTotalsList";
 import NeighbourhoodYearSummary from "../components/Crime/NeighbourhoodYearSummary";
-import { getCrimesYearSummary } from "../util/GetCrimes";
-import StackedBarYear from "../components/Charts/StackedBarYear";
 
 const Neighbourhood = () => {
 	const params = useParams();
 
 	const loaderData = useLoaderData();
-	// const yearSummaryData = loaderData.neighCrimes.data;
-	// const barChartSeries = loaderData.neighCrimes.barChartSeries;
-	// const barChartLabels = loaderData.neighCrimes.barChartLabels;
 	const boundaryPoly = loaderData.boundaryPoly;
 	const areaName = loaderData.areaName;
 
 	console.log(areaName);
-	// console.log(yearSummaryData);
-	// console.log("component data");
-	// console.log(loaderData.neighCrimes.barChartSeries);
-	// console.log(loaderData.neighCrimes.barChartLabels);
-	// console.log("component data");
+
 
 	if (boundaryPoly) {
 		return (
@@ -27,18 +17,15 @@ const Neighbourhood = () => {
 				<h1>Neighbourhood Details</h1>
 				<h2>{areaName}</h2>
 				<NeighbourhoodYearSummary boundaryPoly={boundaryPoly}  />
-				{/* <StackedBarYear barChartSeries={barChartSeries} barChartLabels={barChartLabels} /> */}
-				{/* <CategoryTotalList yearSummaryData={yearSummaryData} /> */}
 			</>
 		);
 	} else {
 		return (
 			<>
 				<h1>Neighbourhood Details</h1>
-				<h2>{areaName}</h2>
 				<p>
-					Summary data unavailable.{" "}
-					{loaderData.neighCrimes.errorMessage}
+					Summary data unavailable.
+					{loaderData.errorMessage}
 				</p>
 			</>
 		);
@@ -51,6 +38,7 @@ export async function loader({ request, params }) {
 	let returnCode = null;
 	let boundaryPoly = null;
 	let areaName = null;
+	let errorMessage = null
 
 	const forceID = params.forceID;
 	const neighbourhoodID = params.neighbourhoodID;
@@ -72,15 +60,12 @@ export async function loader({ request, params }) {
 			neighbourhoodID +
 			"/boundary"
 	);
+
 	if (neighBoundaryResponse.ok) {
 		boundaryPoly = await neighBoundaryResponse.json();
+	} else {
+		errorMessage = "Error Loading Neighbourhood data"
 	}
 
-	// const neighCrimes = await getCrimesYearSummary({
-	// 	category: "all-crime",
-	// 	polyBoundary: boundaryPoly,
-	// });
-
-	// return { neighCrimes, areaName, boundaryPoly };
-	return { areaName, boundaryPoly };
+	return { areaName, boundaryPoly, errorMessage };
 }
