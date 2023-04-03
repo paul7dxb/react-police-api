@@ -25,8 +25,8 @@ export const convertYearDataToChartSeries = (data, categories) => {
 		series.push({ name: categories[i], data: keys[categories[i]] });
 		// keys[categories[i]] = seriesData;
 	}
-    console.log("series")
-    console.log(series)
+    // console.log("series")
+    // console.log(series)
 
     return series
 };

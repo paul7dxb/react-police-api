@@ -6,8 +6,8 @@ import { convertYearDataToChartSeries } from "./GraphFunctions";
 export const getCrimesYearSummary = async (params) => {
 	let queryDates = [];
 	queryDates = await getLastYear();
-	console.log("queryDates");
-	console.log(params);
+	// console.log("queryDates");
+	// console.log(params);
 
 	let errorMessage = null;
 
@@ -43,7 +43,7 @@ export const getCrimesYearSummary = async (params) => {
 	// Used for data series
 	const allCategoriesArray = Array.from(allCategoriesSet);
 
-	console.log(yearSummaryData);
+	// console.log(yearSummaryData);
 
 	const barChartSeries = convertYearDataToChartSeries(
 		yearSummaryData,
@@ -55,6 +55,7 @@ export const getCrimesYearSummary = async (params) => {
 		errorMessage,
 		barChartSeries,
 		barChartLabels: queryDates,
+		allCategoriesArray
 	};
 };
 

@@ -2,29 +2,47 @@ import { useCallback, useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
 const TestGroundPage = () => {
+	const barSeries = {
+		"anti-social-behaviour": 62,
+		"bicycle-theft": 5,
+		"burglary": 31,
+		"anti-social-behaviour": 62,
+		"bicycle-theft": 5,
+		"burglary": 31,
+		"criminal-damage-arson": 46,
+		"drugs": 7,
+		"other-crime": 13,
+		"other-theft": 26,
+		"possession-of-weapons": 2,
+		"public-order": 20,
+		"shoplifting": 13,
+		"theft-from-the-person": 2,
+		"vehicle-crime": 32,
+		"violent-crime": 131,
+	};
 
-	const horizSeries = [
-		{
-			name: "Marine Sprite",
-			data: [44, 55, 41, 37, 22, 43, 21],
-		},
-		{
-			name: "Striking Calf",
-			data: [53, 32, 33, 52, 13, 43, 32],
-		},
-		{
-			name: "Tank Picture",
-			data: [12, 17, 11, 9, 15, 11, 20],
-		},
-		{
-			name: "Bucket Slope",
-			data: [9, 7, 5, 8, 6, 9, 4],
-		},
-		{
-			name: "Reborn Kid",
-			data: [25, 12, 19, 32, 25, 24, 10],
-		},
-	];
+	// const horizSeries = [
+	// 	{
+	// 		name: "Marine Sprite",
+	// 		data: [44, 55, 41, 37, 22, 43, 21],
+	// 	},
+	// 	{
+	// 		name: "Striking Calf",
+	// 		data: [53, 32, 33, 52, 13, 43, 32],
+	// 	},
+	// 	{
+	// 		name: "Tank Picture",
+	// 		data: [12, 17, 11, 9, 15, 11, 20],
+	// 	},
+	// 	{
+	// 		name: "Bucket Slope",
+	// 		data: [9, 7, 5, 8, 6, 9, 4],
+	// 	},
+	// 	{
+	// 		name: "Reborn Kid",
+	// 		data: [25, 12, 19, 32, 25, 24, 10],
+	// 	},
+	// ];
 
 	const horizChartOptions = {
 		chart: {
@@ -88,10 +106,10 @@ const TestGroundPage = () => {
 		<>
 			<h1>TestGround</h1>
 			<Chart
-				series={horizSeries}
+				series={barSeries}
 				type="bar"
 				width="1000"
-				options={horizChartOptions}
+				// options={horizChartOptions}
 			/>
 		</>
 	);

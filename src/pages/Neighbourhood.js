@@ -1,5 +1,5 @@
 import { useLoaderData, useParams } from "react-router-dom";
-import NeighbourhoodYearSummary from "../components/Crime/NeighbourhoodYearSummary";
+import NeighbourhoodData from "../components/Crime/NeighbourhoodData";
 
 const Neighbourhood = () => {
 	const params = useParams();
@@ -16,7 +16,7 @@ const Neighbourhood = () => {
 			<>
 				<h1>Neighbourhood Details</h1>
 				<h2>{areaName}</h2>
-				<NeighbourhoodYearSummary boundaryPoly={boundaryPoly}  />
+				<NeighbourhoodData boundaryPoly={boundaryPoly}   />
 			</>
 		);
 	} else {
@@ -33,6 +33,8 @@ const Neighbourhood = () => {
 };
 
 export default Neighbourhood;
+
+
 
 export async function loader({ request, params }) {
 	let returnCode = null;
