@@ -19,8 +19,8 @@ export const getCrimesYearSummary = async (params) => {
 		? params.polyBoundaryQuery
 		: null;
 
-		console.log("polyBoundaryQuery")
-		console.log(polyBoundaryQuery)
+	console.log("polyBoundaryQuery");
+	console.log(polyBoundaryQuery);
 
 	for (let i = 0; i < queryDates.length; i++) {
 		let newParams = {
@@ -62,6 +62,45 @@ export const getCrimesYearSummary = async (params) => {
 	};
 };
 
+// Expected params {date, category, polyBoundaryQuery}
+export const getCrimesMonthDetail = async (params) => {
+	const apiQuery = createQuery(params);
+	const date = params.date;
+	let errorMessage = null;
+	let data = null;
+	let returnCode = null;
+
+	try {
+		const response = await fetch(apiQuery);
+		if (!response.ok) {
+			throw new Error(response.status);
+		}
+
+		returnCode = await response.status;
+		if (returnCode === 200) {
+			data = await response.json();
+			console.log(data);
+			// const summaryData = countCategories(data);
+			// // console.log(summaryData);
+
+			return { data, errorMessage, date };
+		} else {
+			return {
+				data: null,
+				errorMessage: getErrorMessageFromResponseCode(returnCode),
+				date,
+			};
+		}
+	} catch (error) {
+		console.log(error);
+		return {
+			data: null,
+			errorMessage: getErrorMessageFromResponseCode(error.message),
+			date,
+		};
+	}
+};
+
 export const getCrimesMonthSummary = async (params) => {
 	const apiQuery = createQuery(params);
 	const date = params.date;
@@ -100,6 +139,8 @@ export const getCrimesMonthSummary = async (params) => {
 	}
 };
 
+// Create the URL string for a query to get all crime for given parameters
+// Expected params (date, category, polyBoundaryQuery)
 const createQuery = (params) => {
 	const categoryParam = params.category ? params.category : null;
 	const dateParam = params.date ? params.date : null;
@@ -120,11 +161,8 @@ const createQuery = (params) => {
 
 	queryString +=
 		categoryQueryString + params.polyBoundaryQuery + dateQueryString;
-	// console.log("createQuery: queryString");
-	// console.log(queryString);
 	return queryString;
 };
-
 
 const countCategories = (crimeDataArray) => {
 	// console.log(crimeDataArray);
