@@ -1,0 +1,10 @@
+.bioContainer {
+    padding: var(--paddingMedium);
+}
+
+.subbanner{
+    background-color: var(--pallettePrimaryDark);
+    color: white;
+    width: fit-content;
+    padding: var(--paddingSmall) var(--paddingLarge) var(--paddingSmall) var(--paddingSmall)
+}

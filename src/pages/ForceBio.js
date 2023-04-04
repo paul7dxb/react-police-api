@@ -2,7 +2,9 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { getAllNeighbourhoods } from "../util/AllNeighbourhoods";
 import { getErrorMessageFromResponseCode } from "../util/errorMessages";
 import NeighbourhoodList from "../components/Force/NeighbourhoodList";
-
+import PageBanner from "../components/UI/PageBanner";
+import Card from "../components/UI/Card";
+import classes from "./ForceBio.module.css";
 
 const ForceBio = (props) => {
 	const params = useParams();
@@ -27,30 +29,52 @@ const ForceBio = (props) => {
 		const forceTele = forceData.telephone;
 		const engagementLinks = forceData.engagement_methods;
 
+		let forceTeleOutput = "";
+		if (!forceTele) {
+			forceTeleOutput =
+				"No number provided by database. Use 101 for non-emergency enquiries";
+		} else if (forceTele == "101") {
+			forceTeleOutput =
+				"Only non-emergency enquiries number (101) given by database";
+		} else {
+			forceTeleOutput = forceTele;
+		}
+
 		return (
 			<>
-				<h1>{forceData.name}</h1>
-				<h2>Telephone</h2>
-				<p> {forceTele ? forceTele : "No number provided"} </p>
-				<h2>Links</h2>
-				<ul>
-					<li key="website">
-						<span>Website: </span>
-						<a href={forceURL}>{forceURL}</a>
-					</li>
-					{engagementLinks.map((elem) => (
-						<li key={elem.title}>
-							<span>{elem.title}: </span>
-							{elem.url ? (
-								<a href={elem.url}>{elem.url}</a>
-							) : (
-								<span> Data not provided </span>
-							)}
-						</li>
-					))}
-				</ul>
-				<h2>Neighbourhoods</h2>
-                <NeighbourhoodList neighbourhoodData={neighbourhoodData}/>
+				<PageBanner>
+					<h1>{forceData.name}</h1>
+				</PageBanner>
+				<div className={classes.bioContainer}>
+					<Card>
+						<h2>Telephone</h2>
+						<p> {forceTeleOutput} </p>
+					</Card>
+					<Card>
+						<h2>Links</h2>
+						<ul>
+							<li key="website">
+								<span>Website: </span>
+								<a href={forceURL}>{forceURL}</a>
+							</li>
+							{engagementLinks.map((elem) => (
+								<li key={elem.title}>
+									<span>{elem.title}: </span>
+									{elem.url ? (
+										<a href={elem.url}>{elem.url}</a>
+									) : (
+										<span> Data not provided </span>
+									)}
+								</li>
+							))}
+						</ul>
+					</Card>
+				</div>
+				<div className={classes.subbanner}>
+					<h2>Neighbourhoods</h2>
+					<p>{forceData.name} splits its area of responsibility into multiple neighbourhoods listed below. Selecting one will allow you to see in depth details about crime in this neighbourhood</p>
+				</div>
+				<NeighbourhoodList neighbourhoodData={neighbourhoodData} />
 			</>
 		);
 	}

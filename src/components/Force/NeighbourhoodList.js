@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import classes from "./NeighbourhoodList.module.css";
 
 const NeighbourhoodList = (props) => {
 	const neighbourhoodData = props.neighbourhoodData;
@@ -7,13 +8,15 @@ const NeighbourhoodList = (props) => {
 	console.log(params);
 
 	return (
-		<ul>
-			{neighbourhoodData.map((elem) => (
-				<li key={elem.id}>
-					<Link to={elem.id}>{elem.name}</Link>
-				</li>
-			))}
-		</ul>
+		<div className={classes.neighbourhoodListContainer}>
+			{neighbourhoodData
+				? neighbourhoodData.map((elem) => (
+						<Link className={classes.linkCard} key={elem.id} to={elem.id}>
+							{elem.name}
+						</Link>
+				  ))
+				: undefined}
+		</div>
 	);
 };
 
