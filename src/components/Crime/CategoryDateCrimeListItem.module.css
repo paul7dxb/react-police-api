@@ -1,3 +1,7 @@
 .crimeTitle {
     color: var(--pallettePrimary);
 }
+
+.myc{
+    width: fit-content;
+}

@@ -4,6 +4,9 @@ import { polyArrayToString } from "../util/ApiHelperFuncs";
 import { useEffect, useState } from "react";
 import { getCrimesMonthDetail } from "../util/GetCrimes";
 import CategoryDateCrimeList from "../components/Crime/CategoryDateCrimeList";
+import PageBanner from "../components/UI/PageBanner";
+import Card from "../components/UI/Card";
+import PageSubBanner from "../components/UI/PageSubBanner";
 
 const Neighbourhood = (props) => {
 	const loaderData = useLoaderData();
@@ -40,13 +43,30 @@ const Neighbourhood = (props) => {
 	if (polyBoundaryQuery) {
 		return (
 			<>
-				<h1>Neighbourhood Details</h1>
-				<h2>{areaName}</h2>
-				<NeighbourhoodData
-					polyBoundaryQuery={polyBoundaryQuery}
-					setCatDateParams={setCatDateParams}
-				/>
-				{catDateData ? <CategoryDateCrimeList catDateData={catDateData} params={catDateParams} /> : undefined }
+				<PageBanner>
+					<h1>Neighbourhood Details</h1>
+					<h2>{areaName}</h2>
+				</PageBanner>
+				<Card>
+					<NeighbourhoodData
+						polyBoundaryQuery={polyBoundaryQuery}
+						setCatDateParams={setCatDateParams}
+					/>
+				</Card>
+
+				{catDateData ? (
+					<>
+						<PageSubBanner>
+							<h1>
+								{catDateParams.category} crime during {catDateParams.date}
+							</h1>
+						</PageSubBanner>
+						<CategoryDateCrimeList
+							catDateData={catDateData}
+							params={catDateParams}
+						/>
+					</>
+				) : undefined}
 			</>
 		);
 	} else {
@@ -93,7 +113,6 @@ export async function loader({ request, params }) {
 	if (neighBoundaryResponse.ok) {
 		boundaryPoly = await neighBoundaryResponse.json();
 		if (boundaryPoly.length > 0) {
-
 			polyBoundaryQuery = polyArrayToString(boundaryPoly);
 			// console.log(polyBoundaryQuery);
 		}

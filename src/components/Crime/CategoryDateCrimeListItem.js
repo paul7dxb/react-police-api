@@ -1,5 +1,5 @@
 import classes from "./CategoryDateCrimeListItem.module.css"
-
+import Card from "../UI/Card";
 
 const CategoryDateCrimeListItem = (props) => {
 
@@ -10,12 +10,12 @@ const CategoryDateCrimeListItem = (props) => {
     const updateDate = props.outcomeStatus ? props.outcomeStatus.date : "No update date"
 
 	return (
-		<li>
+		<Card className={classes.myc} >
             <h4 className={classes.crimeTitle}>Crime:</h4>
             <p>Location: {streetName} id: {props.locationID}</p>
             <p>Outcome: {outcome}</p>
             <p>updated: {updateDate}</p> 
-		</li>
+		</Card>
 	);
 };
 export default CategoryDateCrimeListItem;

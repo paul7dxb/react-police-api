@@ -2,7 +2,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     margin: 20px 0;
-    max-width: 500px;
+    /* max-width: 500px; */
     background-color: var(--palletteWhite);
     padding: 10px;
 }

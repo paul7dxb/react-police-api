@@ -10,9 +10,7 @@ const CategoryDateCrimeList = (props) => {
 	const data = props.catDateData.data;
 	return (
 		<>
-			<h1>
-				{category} crime during {date}
-			</h1>
+
 			<ul>
 				{data
 					? data.map((item, index) => {

@@ -3,6 +3,7 @@ import { getAllNeighbourhoods } from "../util/AllNeighbourhoods";
 import { getErrorMessageFromResponseCode } from "../util/errorMessages";
 import NeighbourhoodList from "../components/Force/NeighbourhoodList";
 import PageBanner from "../components/UI/PageBanner";
+import PageSubBanner from "../components/UI/PageSubBanner";
 import Card from "../components/UI/Card";
 import classes from "./ForceBio.module.css";
 
@@ -70,10 +71,10 @@ const ForceBio = (props) => {
 						</ul>
 					</Card>
 				</div>
-				<div className={classes.subbanner}>
+				<PageSubBanner>
 					<h2>Neighbourhoods</h2>
 					<p>{forceData.name} splits its area of responsibility into multiple neighbourhoods listed below. Selecting one will allow you to see in depth details about crime in this neighbourhood</p>
-				</div>
+				</PageSubBanner>
 				<NeighbourhoodList neighbourhoodData={neighbourhoodData} />
 			</>
 		);
