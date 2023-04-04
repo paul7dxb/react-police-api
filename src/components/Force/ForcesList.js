@@ -29,6 +29,7 @@ const ForcesList = () => {
 	return (
 		<>
 			<h1>Forces List</h1>
+			<p>Below is the list of Police Forces in the UK that provide data </p>
 			{forcesData ? forcesData.map((elem) => (
 				<ForcesListItem key={elem["id"]} forceID={elem["id"]} forceName={elem["name"]} />
 			)) : undefined}

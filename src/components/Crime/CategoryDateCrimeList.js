@@ -1,3 +1,5 @@
+import CategoryDateCrimeListItem from "./CategoryDateCrimeListItem";
+
 const CategoryDateCrimeList = (props) => {
 	const date = props.params.date;
 	const category = props.params.category;
@@ -8,15 +10,19 @@ const CategoryDateCrimeList = (props) => {
 	const data = props.catDateData.data;
 	return (
 		<>
-			<h1>{category} crime during {date}</h1>
+			<h1>
+				{category} crime during {date}
+			</h1>
 			<ul>
 				{data
 					? data.map((item, index) => {
-							return (<li>
-                                Location: {item.location.street.name} - 
-                                Outcome: {item.outcome_status.category}
-                                
-                                </li>);
+							return (
+								<CategoryDateCrimeListItem key={index}
+									streetName={item.location.street.name}
+									outcomeStatus={item.outcome_status}
+                                    locationID={item.location.street.id}
+								/>
+							);
 					  })
 					: undefined}
 			</ul>

@@ -7,6 +7,7 @@ import ForceBio, {
 	loader as forceBioLoader,
 } from "./pages/ForceBio";
 import Neighbourhood, {loader as neighbourhoodLoader} from "./pages/Neighbourhood"
+import "./App.css"
 
 //Create router
 const router = createBrowserRouter([
