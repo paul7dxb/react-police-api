@@ -1,0 +1,5 @@
+.banner{
+    background-color: var(--pallettePrimaryDark);
+    color: var(--palletteWhite);
+    padding: 10px
+}

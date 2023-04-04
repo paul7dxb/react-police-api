@@ -1,18 +1,20 @@
-import ForcesList from "../components/Force/ForcesList"
-// import ForcesBio from "../components/Force/ForceBio"
-// import NeighbourhoodList from "../components/Force/NeighbourhoodList"
-// import SeniorOfficerList from "../components/Force/SeniorOfficerList"
+import ForcesList from "../components/Force/ForcesList";
+import PageBanner from "../components/UI/PageBanner";
+
 
 const Forces = () => {
-    return (
-        <>
-        <ForcesList />
-        {/* <ForcesBio/> */}
-        {/* <NeighbourhoodList />
-        <SeniorOfficerList /> */}
-        
-        </>
-    )
-}
+	return (
+		<>
+			<PageBanner>
+				<h1>Forces List</h1>
+				<p>
+					Below is the list of Police Forces in the UK that provide
+					data
+				</p>
+			</PageBanner>
+			<ForcesList />
+		</>
+	);
+};
 
-export default Forces
+export default Forces;

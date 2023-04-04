@@ -3,8 +3,9 @@
 */
 
 import { getAllForces } from "../../util/AllForces";
-import { useState, useEffect,useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ForcesListItem from "./ForcesListItem";
+import classes from "./ForcesList.module.css"
 
 const ForcesList = () => {
 	const [forcesData, setForcesData] = useState([]);
@@ -14,8 +15,8 @@ const ForcesList = () => {
 	const fetchForcesListHandler = useCallback(async () => {
 		try {
 			const response = await getAllForces();
-            setForcesData(response.data)
-            setapiError(response.errorMessage)
+			setForcesData(response.data);
+			setapiError(response.errorMessage);
 		} catch (error) {
 			setapiError(error.message);
 		}
@@ -23,18 +24,22 @@ const ForcesList = () => {
 	}, []);
 
 	useEffect(() => {
-		fetchForcesListHandler()
+		fetchForcesListHandler();
 	}, [fetchForcesListHandler]);
 
 	return (
-		<>
-			<h1>Forces List</h1>
-			<p>Below is the list of Police Forces in the UK that provide data </p>
-			{forcesData ? forcesData.map((elem) => (
-				<ForcesListItem key={elem["id"]} forceID={elem["id"]} forceName={elem["name"]} />
-			)) : undefined}
-            {apiError ? <h2>{apiError}</h2> : undefined }
-		</>
+		<div className={classes.forceListContainer}>
+			{forcesData
+				? forcesData.map((elem) => (
+						<ForcesListItem
+							key={elem["id"]}
+							forceID={elem["id"]}
+							forceName={elem["name"]}
+						/>
+				  ))
+				: undefined}
+			{apiError ? <h2>{apiError}</h2> : undefined}
+		</div>
 	);
 };
 export default ForcesList;

@@ -3,7 +3,8 @@
   --palletteAccentLight: #c94473;
   --palletteAccentDark: #7f8692;
   --pallettePrimary: #4272b2;
-  --pallettePrimaryDark: #183045;
+  /* --pallettePrimaryDark: #183045; */
+  --pallettePrimaryDark: #0c161e;
 
   --bgColor: #183045;
 
@@ -11,6 +12,12 @@
   --successColor: #499d6d;
   --warningColor: #c68d35;
   --errorColor: #f44336;
+
+  --paddingSmall: 10px;
+  --paddingMedium: 25px;
+  --marginSmall: 10px;
+  --marginMedium: 25px;
+
 
 }
 body{
