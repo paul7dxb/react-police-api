@@ -67,6 +67,7 @@ export const getCrimesMonthDetail = async (params) => {
 	const apiQuery = createQuery(params);
 	const date = params.date;
 	let errorMessage = null;
+	let responseData = null;
 	let data = null;
 	let returnCode = null;
 
@@ -78,12 +79,17 @@ export const getCrimesMonthDetail = async (params) => {
 
 		returnCode = await response.status;
 		if (returnCode === 200) {
-			data = await response.json();
-			// console.log(data);
+			responseData = await response.json();
+
+			console.log("responseData");
+			console.log(responseData);
 			// const summaryData = countCategories(data);
 			// // console.log(summaryData);
+			// responseData.forEach(function (arrayItem) {
+			// 	const 
+			// })
 
-			return { data, errorMessage, date };
+			return { data: responseData, errorMessage, date };
 		} else {
 			return {
 				data: null,

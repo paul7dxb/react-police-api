@@ -24,4 +24,4 @@ const CrimeList = (props) => {
 
 }
 
-export default CrimeList
+// export default CrimeList

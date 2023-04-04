@@ -3,6 +3,7 @@ import NeighbourhoodData from "../components/Crime/NeighbourhoodData";
 import { polyArrayToString } from "../util/ApiHelperFuncs";
 import { useEffect, useState } from "react";
 import { getCrimesMonthDetail } from "../util/GetCrimes";
+import CategoryDateCrimeList from "../components/Crime/CategoryDateCrimeList";
 
 const Neighbourhood = (props) => {
 	const loaderData = useLoaderData();
@@ -27,8 +28,8 @@ const Neighbourhood = (props) => {
 
 	useEffect(() => {
 		if (catDateParams.date) {
-			console.log("catDateParams")
-			console.log(catDateParams)
+			// console.log("catDateParams")
+			// console.log(catDateParams)
 			getMonthCrimes();
 		}
 	}, [catDateParams]);
@@ -45,6 +46,7 @@ const Neighbourhood = (props) => {
 					polyBoundaryQuery={polyBoundaryQuery}
 					setCatDateParams={setCatDateParams}
 				/>
+				{catDateData ? <CategoryDateCrimeList catDateData={catDateData} params={catDateParams} /> : undefined }
 			</>
 		);
 	} else {
