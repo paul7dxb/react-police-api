@@ -91,10 +91,9 @@ export async function loader({ request, params }) {
 	if (neighBoundaryResponse.ok) {
 		boundaryPoly = await neighBoundaryResponse.json();
 		if (boundaryPoly.length > 0) {
-			console.log("polyBoundaryQuerydoodoo");
 
 			polyBoundaryQuery = polyArrayToString(boundaryPoly);
-			console.log(polyBoundaryQuery);
+			// console.log(polyBoundaryQuery);
 		}
 	} else {
 		errorMessage = "Error Loading Neighbourhood data";

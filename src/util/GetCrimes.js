@@ -19,8 +19,8 @@ export const getCrimesYearSummary = async (params) => {
 		? params.polyBoundaryQuery
 		: null;
 
-	console.log("polyBoundaryQuery");
-	console.log(polyBoundaryQuery);
+	// console.log("polyBoundaryQuery");
+	// console.log(polyBoundaryQuery);
 
 	for (let i = 0; i < queryDates.length; i++) {
 		let newParams = {
@@ -79,7 +79,7 @@ export const getCrimesMonthDetail = async (params) => {
 		returnCode = await response.status;
 		if (returnCode === 200) {
 			data = await response.json();
-			console.log(data);
+			// console.log(data);
 			// const summaryData = countCategories(data);
 			// // console.log(summaryData);
 

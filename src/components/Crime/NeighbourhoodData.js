@@ -6,8 +6,6 @@ import { useParams } from "react-router-dom";
 // import CrimeList from "./CrimeList";
 
 const NeighbourhoodYearSummary = (props) => {
-
-
 	// Year Summary Data
 	const [yearData, setYearData] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -36,28 +34,27 @@ const NeighbourhoodYearSummary = (props) => {
 	}, [fetchYearDataHandler]);
 
 	// Click Handler
-	const yearGraphClickedHandler = ({type, date, category, labelIndex }) => {
-		switch(type){
+	const yearGraphClickedHandler = ({ type, date, category, labelIndex }) => {
+		switch (type) {
 			case "axisClick":
-				console.log("axisClick " + date + " #: " + labelIndex )
+				console.log("axisClick " + date + " #: " + labelIndex);
 				let categoryTotals = [];
 				yearData.barChartSeries.forEach(function (arrayItem) {
-					categoryTotals.push(arrayItem.data[labelIndex])
+					categoryTotals.push(arrayItem.data[labelIndex]);
 				});
-				setRefinedRow({date, categoryTotals})
+				setRefinedRow({ date, categoryTotals });
 				break;
 			case "dataClick":
-				console.log("dataClick " + date +  " : " + category)
-				props.setCatDateParams({date, category})
+				console.log("dataClick " + date + " : " + category);
+				props.setCatDateParams({ date, category });
 				break;
 		}
-		console.log(yearData)
+		console.log(yearData);
 	};
 
 	if (isLoading) {
 		return <h1>Loading data...</h1>;
 	}
-
 
 	if (!isLoading && yearData.barChartSeries) {
 		return (
@@ -67,7 +64,14 @@ const NeighbourhoodYearSummary = (props) => {
 					barChartLabels={yearData.barChartLabels}
 					onClick={yearGraphClickedHandler}
 				/>
-				{refinedRow ? <BarChartMonth date={refinedRow.date} barChartSeries={refinedRow.categoryTotals} barChartLabels={yearData.allCategoriesArray} /> : undefined }
+				{refinedRow ? (
+					<BarChartMonth
+						date={refinedRow.date}
+						barChartSeries={refinedRow.categoryTotals}
+						barChartLabels={yearData.allCategoriesArray}
+						onClick={yearGraphClickedHandler}
+					/>
+				) : undefined}
 				{/* {refinedDataPoint ? <CrimeList useLessProp={"234"} queryParams={refinedDataPoint}  /> : undefined} */}
 			</>
 		);
@@ -82,5 +86,3 @@ const NeighbourhoodYearSummary = (props) => {
 };
 
 export default NeighbourhoodYearSummary;
-
-
