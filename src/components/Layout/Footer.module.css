@@ -1,0 +1,27 @@
+.footer {
+	padding: 1rem;
+	margin: 0 auto;
+	width: 100vw;
+	background-color: var(--pallettePrimary);
+}
+
+.footer ul {
+	list-style-type: none;
+	display: flex;
+	gap: 4rem;
+	justify-content: center;
+	align-items: center;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.footer a {
+	font-size: 1.25rem;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.footer a:hover,
+.footer a.active {
+	color: var(--palletteAccentLight);
+}
