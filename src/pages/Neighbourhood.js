@@ -47,18 +47,17 @@ const Neighbourhood = (props) => {
 					<h1>Neighbourhood Details</h1>
 					<h2>{areaName}</h2>
 				</PageBanner>
-				<Card>
-					<NeighbourhoodData
-						polyBoundaryQuery={polyBoundaryQuery}
-						setCatDateParams={setCatDateParams}
-					/>
-				</Card>
+				<NeighbourhoodData
+					polyBoundaryQuery={polyBoundaryQuery}
+					setCatDateParams={setCatDateParams}
+				/>
 
 				{catDateData ? (
 					<>
 						<PageSubBanner>
 							<h1>
-								{catDateParams.category} crime during {catDateParams.date}
+								{catDateParams.category} crime during{" "}
+								{catDateParams.date}
 							</h1>
 						</PageSubBanner>
 						<CategoryDateCrimeList

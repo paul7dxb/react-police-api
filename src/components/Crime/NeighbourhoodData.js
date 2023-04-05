@@ -3,7 +3,8 @@ import { getCrimesYearSummary } from "../../util/GetCrimes";
 import StackedBarYear from "../Charts/StackedBarYear";
 import BarChartMonth from "../Charts/BarChartMonth";
 import { useParams } from "react-router-dom";
-// import CrimeList from "./CrimeList";
+import Card from "../UI/Card";
+import classes from "./NeighbourhoodYearSummary.module.css";
 
 const NeighbourhoodYearSummary = (props) => {
 	// Year Summary Data
@@ -59,18 +60,22 @@ const NeighbourhoodYearSummary = (props) => {
 	if (!isLoading && yearData.barChartSeries) {
 		return (
 			<>
-				<StackedBarYear
-					barChartSeries={yearData.barChartSeries}
-					barChartLabels={yearData.barChartLabels}
-					onClick={yearGraphClickedHandler}
-				/>
-				{refinedRow ? (
-					<BarChartMonth
-						date={refinedRow.date}
-						barChartSeries={refinedRow.categoryTotals}
-						barChartLabels={yearData.allCategoriesArray}
+				<Card className={classes.graphCard}>
+					<StackedBarYear
+						barChartSeries={yearData.barChartSeries}
+						barChartLabels={yearData.barChartLabels}
 						onClick={yearGraphClickedHandler}
 					/>
+				</Card>
+				{refinedRow ? (
+					<Card className={classes.graphCard}>
+						<BarChartMonth
+							date={refinedRow.date}
+							barChartSeries={refinedRow.categoryTotals}
+							barChartLabels={yearData.allCategoriesArray}
+							onClick={yearGraphClickedHandler}
+						/>
+					</Card>
 				) : undefined}
 				{/* {refinedDataPoint ? <CrimeList useLessProp={"234"} queryParams={refinedDataPoint}  /> : undefined} */}
 			</>
