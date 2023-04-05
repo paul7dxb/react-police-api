@@ -30,7 +30,7 @@
     justify-content: center;
 }
 
-img {
+.imgLeft, .imgRight {
 	width: 30vw;
 	z-index: 2;
 	position: relative;

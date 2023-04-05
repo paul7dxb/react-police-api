@@ -33,7 +33,7 @@ const HomePageItem = (props) => {
 					<p>{props.description}</p>
 					<Link to={props.targetPage}>Go to the {props.title} page</Link>
 				</Card>
-				<img
+				<img className={classes.imgRight}
 					src="https://paul7dxb.github.io/hosted-assets/PoliceSite/fromeData.png"
 					alt=""
 				/>

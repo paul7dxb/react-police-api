@@ -10,6 +10,7 @@ import Neighbourhood, {loader as neighbourhoodLoader} from "./pages/Neighbourhoo
 import MoreInfo from "./pages/MoreInfo"
 
 import "./App.css"
+import NotFoundPage from "./pages/NotFoundPage";
 
 //Create router
 const router = createBrowserRouter([
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
 			},
 			{ path: "testground", element: <TestGroundPage /> },
 			{ path: "more-info", element: <MoreInfo /> },
+			{path: "*", element: <NotFoundPage />}
 		],
 	},
 ]);
