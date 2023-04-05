@@ -16,7 +16,7 @@ const homeData = [
 	{
 		title: "More Information",targetPage: "/more-info",
 		description:
-			"Here you will be able to find out more information about the publicly available data, including the privacy of the data that is made available.",
+			"Here you will be able to find out more information about the publicly available data, including how privacy of the data is handed before it is made available.",
 	},
 ];
 

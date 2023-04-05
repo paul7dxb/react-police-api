@@ -7,6 +7,8 @@ import ForceBio, {
 	loader as forceBioLoader,
 } from "./pages/ForceBio";
 import Neighbourhood, {loader as neighbourhoodLoader} from "./pages/Neighbourhood"
+import MoreInfo from "./pages/MoreInfo"
+
 import "./App.css"
 
 //Create router
@@ -37,6 +39,7 @@ const router = createBrowserRouter([
 				],
 			},
 			{ path: "testground", element: <TestGroundPage /> },
+			{ path: "more-info", element: <MoreInfo /> },
 		],
 	},
 ]);

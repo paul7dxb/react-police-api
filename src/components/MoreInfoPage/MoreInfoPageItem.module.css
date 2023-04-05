@@ -1,0 +1,46 @@
+.rightCard,
+.leftCard {
+	width: 40%;
+    max-width: 400px;
+	padding: var(--paddingLarge);
+	display: inline-block;
+    padding-right: 75px;
+
+}
+
+.rightCard {
+	/* margin-left: 50%; */
+    padding-left: 75px;
+}
+
+.titleLink {
+	font-size: 1.6rem;
+	font-weight: 500;
+	color: var(--pallettePrimary);
+	text-decoration: none;
+}
+
+.titleLink:hover {
+	font-weight: 700;
+}
+
+.sectionContainer {
+    margin: var(--marginMedium);
+	display: flex;
+    justify-content: center;
+}
+
+img {
+	width: 30vw;
+	z-index: 2;
+	position: relative;
+    margin-left: -5%;
+
+    border-radius: 5px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+
+}
+
+.imgLeft{
+    margin-right: -5%;
+}
