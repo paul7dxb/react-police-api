@@ -5,6 +5,7 @@ import BarChartMonth from "../Charts/BarChartMonth";
 import { useParams } from "react-router-dom";
 import Card from "../UI/Card";
 import classes from "./NeighbourhoodYearSummary.module.css";
+import Loader from "../UI/Loader";
 
 const NeighbourhoodYearSummary = (props) => {
 	// Year Summary Data
@@ -54,7 +55,7 @@ const NeighbourhoodYearSummary = (props) => {
 	};
 
 	if (isLoading) {
-		return <h1>Loading data...</h1>;
+		return <Loader message="Loading Data..." />;
 	}
 
 	if (!isLoading && yearData.barChartSeries) {

@@ -1,0 +1,56 @@
+
+/* Changes */
+.loaderContainer {
+	width: 300px;
+	text-align: center;
+    margin: var(--marginLarge) auto;
+}
+
+.siren {
+	width: 150px;
+	height: 60px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	background-color: #11b;
+
+	animation-name: strobe;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	transition-timing-function: linear;
+}
+.siren:after {
+	float: left;
+	content: "";
+	margin-left: 100%;
+
+	width: 150px;
+	height: 60px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	background-color: #b11;
+
+	animation-name: strobeb;
+	animation-delay: 0.4s;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	transition-timing-function: linear;
+}
+
+@keyframes strobe {
+	from {
+		box-shadow: 0px 0px 100px 10px #000;
+	}
+	to {
+		box-shadow: 0px 0px 100px 10px #55f;
+		background-color: #55f;
+	}
+}
+@keyframes strobeb {
+	from {
+		box-shadow: 0px 0px 100px 10px #000;
+	}
+	to {
+		box-shadow: 0px 0px 100px 10px #f55;
+		background-color: #f55;
+	}
+}

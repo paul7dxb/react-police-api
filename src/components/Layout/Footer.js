@@ -7,10 +7,10 @@ const Footer = () => {
 			<nav>
 				<ul>
 					<li>
-						<a href="github">Github</a>
+						<a href="https://github.com/paul7dxb/react-police-api">Source Code</a>
 					</li>
 					<li>
-						<a href="">Contact Developer</a>
+						<a href="https://paulmck.dev/contact">Contact The Developer</a>
 					</li>
 				</ul>
 			</nav>
