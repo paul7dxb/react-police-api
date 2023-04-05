@@ -1,3 +1,9 @@
+.neighbourhoodFilterInput{
+    margin: var(--marginMedium);
+    font-size: 1.2rem;
+    padding: var(--paddingSmall);
+}
+
 .neighbourhoodListContainer{
     display: flex;
     flex-wrap: wrap;
