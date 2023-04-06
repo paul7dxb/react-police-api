@@ -1,11 +1,10 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import NeighbourhoodData from "../components/Crime/NeighbourhoodData";
 import { polyArrayToString } from "../util/ApiHelperFuncs";
 import { useEffect, useState } from "react";
 import { getCrimesMonthDetail } from "../util/GetCrimes";
 import CategoryDateCrimeList from "../components/Crime/CategoryDateCrimeList";
 import PageBanner from "../components/UI/PageBanner";
-import Card from "../components/UI/Card";
 import PageSubBanner from "../components/UI/PageSubBanner";
 
 const Neighbourhood = (props) => {

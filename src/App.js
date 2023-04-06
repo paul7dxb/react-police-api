@@ -11,6 +11,7 @@ import MoreInfo from "./pages/MoreInfo"
 
 import "./App.css"
 import NotFoundPage from "./pages/NotFoundPage";
+import CustomSearch from "./pages/CustomSearch";
 
 //Create router
 const router = createBrowserRouter([
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
 					},
 				],
 			},
+			{ path: "search", element: <CustomSearch /> },
 			{ path: "testground", element: <TestGroundPage /> },
 			{ path: "more-info", element: <MoreInfo /> },
 			{path: "*", element: <NotFoundPage />}
