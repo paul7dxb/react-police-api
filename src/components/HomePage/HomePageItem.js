@@ -1,4 +1,5 @@
 import Card from "../UI/Card";
+import LinkButton from "../UI/LinkButton";
 import classes from "./HomePageItem.module.css";
 import { Link } from "react-router-dom";
 
@@ -19,7 +20,7 @@ const HomePageItem = (props) => {
 						{props.title}
 					</Link>
 					<p>{props.description}</p>
-                    <Link to={props.targetPage}>Go to the {props.title} page</Link>
+					<LinkButton url={props.targetPage} description={props.title + " Page"} />
 				</Card>
 			</div>
 		);
@@ -31,7 +32,7 @@ const HomePageItem = (props) => {
 						{props.title}
 					</Link>
 					<p>{props.description}</p>
-					<Link to={props.targetPage}>Go to the {props.title} page</Link>
+					<LinkButton url={props.targetPage} description={props.title + " Page"} />
 				</Card>
 				<img className={classes.imgRight}
 					src="https://paul7dxb.github.io/hosted-assets/PoliceSite/fromeData.png"

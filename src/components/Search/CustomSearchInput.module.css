@@ -1,0 +1,15 @@
+.form {
+	display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.formInputs{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.formField {
+    padding: var(--paddingSmall);
+}

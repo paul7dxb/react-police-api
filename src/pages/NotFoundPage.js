@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import Card from "../components/UI/Card";
+import LinkButton from "../components/UI/LinkButton";
 
 import classes from "./NotFoundPage.module.css";
 
@@ -13,7 +13,7 @@ const NotFoundPage = () => {
 			/>
 			<Card className={classes.notFoundCard}>
 				<h2 className={classes.cardTitle}>Page not found</h2>
-				<Link className={classes.notFoundLink} to="/">Escort me back to safety</Link>
+				<LinkButton url="/" description="Escort me back to safety"  />
 			</Card>
 		</div>
 	);

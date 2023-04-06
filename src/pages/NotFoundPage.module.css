@@ -23,18 +23,3 @@
 	/* display: inline-block; */
 	width: fit-content;
 }
-
-.notFoundLink {
-    text-decoration: none;
-	padding: var(--paddingSmall);
-	border: 2px solid;
-	transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-}
-
-.notFoundLink:hover {
-	box-shadow: 0 0.5em 0.5em -0.4em var(--palletteAccentLight);
-      border-color: var(--palletteAccentLight);
-
-	/* Lift using transform */
-	transform: translateY(-0.25em);
-}

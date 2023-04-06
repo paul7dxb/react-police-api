@@ -1,29 +1,44 @@
-:root{
-  --palletteWhite: #f7f6f6;
-  --palletteAccentLight: #c94473;
-  --palletteAccentDark: #7f8692;
-  --pallettePrimary: #4272b2;
-  /* --pallettePrimaryDark: #183045; */
-  --pallettePrimaryDark: #0c161e;
+:root {
+	--palletteWhite: #f7f6f6;
+	--palletteAccentLight: #c94473;
+	--palletteAccentDark: #7f8692;
+	--pallettePrimary: #4272b2;
+	/* --pallettePrimaryDark: #183045; */
+	--pallettePrimaryDark: #0c161e;
 
-  --bgColor: #183045;
+	--bgColor: #183045;
 
-  --infoColor: #183045; 
-  --successColor: #499d6d;
-  --warningColor: #c68d35;
-  --errorColor: #f44336;
+	--infoColor: #183045;
+	--successColor: #499d6d;
+	--warningColor: #c68d35;
+	--errorColor: #f44336;
 
-  --paddingSmall: 10px;
-  --paddingMedium: 25px;
-  --paddingLarge: 50px;
-  
-  --marginSmall: 10px;
-  --marginMedium: 25px;
-  --marginLarge: 50px;
+	--paddingSmall: 10px;
+	--paddingMedium: 25px;
+	--paddingLarge: 50px;
 
-
+	--marginSmall: 10px;
+	--marginMedium: 25px;
+	--marginLarge: 50px;
 }
-body{
-  background-color: var(--bgColor);
-  font-family: Gotham A,Gotham B,sans-serif;
+
+body {
+	background-color: var(--bgColor);
+	font-family: Gotham A, Gotham B, sans-serif;
+}
+
+button {
+	padding: var(--paddingSmall) var(--paddingMedium);
+	border: 2px solid;
+	border-radius: 4px;
+	border-color: var(--pallettePrimary);
+	transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+button:hover {
+  color: var(--palletteAccentLight);
+	border-color: var(--palletteAccentLight);
+	box-shadow: 0 0.5em 0.5em -0.4em var(--palletteAccentLight);
+	/* Lift using transform */
+	transform: translateY(-0.25em);
 }

@@ -17,6 +17,11 @@ return (
                     </NavLink>
                 </li>
                 <li>
+                    <NavLink to="/search" className={({isActive}) => isActive ? classes.active : undefined} >
+                        Search
+                    </NavLink>
+                </li>
+                <li>
                     <NavLink to="/more-info" className={({isActive}) => isActive ? classes.active : undefined} >
                         More Info
                     </NavLink>

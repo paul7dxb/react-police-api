@@ -18,6 +18,7 @@ const NeighbourhoodYearSummary = (props) => {
 	// const [refinedDataPoint, setRefinedDataPoint] = useState(null);
 
 	const fetchYearDataHandler = useCallback(async () => {
+		setIsLoading(true)
 		try {
 			const response = await getCrimesYearSummary({
 				category: "all-crime",
@@ -33,7 +34,7 @@ const NeighbourhoodYearSummary = (props) => {
 
 	useEffect(() => {
 		fetchYearDataHandler();
-	}, [fetchYearDataHandler]);
+	}, [fetchYearDataHandler, props.polyBoundaryQuery]);
 
 	// Click Handler
 	const yearGraphClickedHandler = ({ type, date, category, labelIndex }) => {
