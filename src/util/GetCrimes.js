@@ -4,8 +4,8 @@ import { convertYearDataToChartSeries } from "./GraphFunctions";
 
 // Params category, polyBoundary
 export const getCrimesYearSummary = async (params) => {
-	console.log("params")
-	console.log(params)
+	console.log("params");
+	console.log(params);
 	let queryDates = [];
 	queryDates = await getLastYear();
 
@@ -38,6 +38,28 @@ export const getCrimesYearSummary = async (params) => {
 			yearSummaryData.push(newMonthData.data.crimes);
 		}
 	}
+
+	// // Make Each request 100ms apart to stay under threshold of too many requests
+	// for (let i = 0; i < queryDates.length; i++) {
+	// 	let newParams = {
+	// 		category: "all-crime",
+	// 		date: queryDates[i],
+	// 		polyBoundaryQuery,
+	// 	};
+	// 	// Delay each API call by 100ms
+	// 	await new Promise((resolve) => setTimeout(resolve, 100));
+	// 	let newMonthData = await getCrimesMonthSummary(newParams);
+	// 	if (newMonthData.errorMessage) {
+	// 		errorMessage = yearSummaryData[i].error;
+	// 	} else {
+	// 		//Extract categories
+	// 		newMonthData.data.categories.forEach(
+	// 			allCategoriesSet.add,
+	// 			allCategoriesSet
+	// 		);
+	// 		yearSummaryData.push(newMonthData.data.crimes);
+	// 	}
+	// }
 
 	// Used for data series
 	const allCategoriesArray = Array.from(allCategoriesSet);
@@ -101,7 +123,7 @@ export const getCrimesMonthSummary = async (params) => {
 	let returnCode = null;
 
 	try {
-		console.log("New fetch: " + date)
+		console.log("New fetch: " + date);
 		const response = await fetch(apiQuery);
 		if (!response.ok) {
 			throw new Error(response.status);
@@ -156,7 +178,7 @@ const createQuery = (params) => {
 };
 
 const countCategories = (crimeDataArray) => {
-	console.log("counting Crimes")
+	console.log("counting Crimes");
 	let crimes = {};
 	let categories = [];
 
