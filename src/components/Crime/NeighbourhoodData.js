@@ -8,6 +8,7 @@ import classes from "./NeighbourhoodYearSummary.module.css";
 import Loader from "../UI/Loader";
 
 const NeighbourhoodYearSummary = (props) => {
+	console.log("new Render NeighbourHoooddata")
 	// Year Summary Data
 	const [yearData, setYearData] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -18,17 +19,18 @@ const NeighbourhoodYearSummary = (props) => {
 	// const [refinedDataPoint, setRefinedDataPoint] = useState(null);
 
 	const fetchYearDataHandler = useCallback(async () => {
-		console.log("props.polyBoundaryQuery in callback")
-		console.log(props.polyBoundaryQuery)
-		setIsLoading(true)
+	// useCallback(async () => {
+		console.log("props.polyBoundaryQuery in callback");
+		// console.log(props.polyBoundaryQuery);
+		setIsLoading(true);
 		try {
 			const response = await getCrimesYearSummary({
 				category: "all-crime",
 				polyBoundaryQuery: props.polyBoundaryQuery,
 			});
 			setYearData(response);
-			console.log("setting New year data")
-			console.log(response)
+			console.log("setting New year data");
+			console.log(response);
 			setapiError(response.errorMessage);
 		} catch (error) {
 			setapiError(error.message);
@@ -37,8 +39,9 @@ const NeighbourhoodYearSummary = (props) => {
 	}, []);
 
 	useEffect(() => {
+		console.log("useEffect Data")
 		fetchYearDataHandler();
-	}, [fetchYearDataHandler, props.polyBoundaryQuery]);
+	}, []);
 
 	// Click Handler
 	const yearGraphClickedHandler = ({ type, date, category, labelIndex }) => {

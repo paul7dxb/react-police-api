@@ -8,6 +8,8 @@ import PageBanner from "../components/UI/PageBanner";
 import PageSubBanner from "../components/UI/PageSubBanner";
 
 const Neighbourhood = (props) => {
+	console.log("new Render Neighbourhood")
+
 	const loaderData = useLoaderData();
 	const polyBoundaryQuery = loaderData.polyBoundaryQuery;
 	const areaName = loaderData.areaName;
@@ -30,7 +32,7 @@ const Neighbourhood = (props) => {
 
 	useEffect(() => {
 		if (catDateParams.date) {
-			// console.log("catDateParams")
+			console.log("catDateParams useEffect")
 			// console.log(catDateParams)
 			getMonthCrimes();
 		}
