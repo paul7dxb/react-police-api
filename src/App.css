@@ -35,10 +35,14 @@ button {
 	transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
-button:hover {
+button:hover:enabled {
   color: var(--palletteAccentLight);
 	border-color: var(--palletteAccentLight);
 	box-shadow: 0 0.5em 0.5em -0.4em var(--palletteAccentLight);
 	/* Lift using transform */
 	transform: translateY(-0.25em);
+}
+
+button:disabled{
+	border-color: var(--palletteAccentDark);
 }
