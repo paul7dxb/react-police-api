@@ -41,67 +41,30 @@ export const getCrimesYearSummary = async (params) => {
 	// 	}
 	// }
 
-	// // Make Each request 100ms apart to stay under threshold of too many requests then process data once its all in
-	// for (let i = 0; i < queryDates.length; i++) {
-	// 	let newParams = {
-	// 		category: "all-crime",
-	// 		date: queryDates[i],
-	// 		polyBoundaryQuery,
-	// 	};
-	// 	// Delay each API call by 100ms
-	// 	await new Promise((resolve) => setTimeout(resolve, 100));
-	// 	let newMonthData = await getCrimesMonthSummary(newParams);
-	// 	if (newMonthData.errorMessage) {
-	// 		errorMessage = yearSummaryData[i].error;
-	// 	} else {
-	// 		//Extract categories
-	// 		newMonthData.data.categories.forEach(
-	// 			allCategoriesSet.add,
-	// 			allCategoriesSet
-	// 		);
-	// 		yearSummaryData.push(newMonthData.data.crimes);
-	// 	}
-	// }
-
-	// Function to make the API call
-	// const getCrimesMonthSummaryAsync = async (date) => {
-	// 	const newParams = {
-	// 		category: "all-crime",
-	// 		date: date,
-	// 		polyBoundaryQuery,
-	// 	};
-	// 	return await getCrimesMonthSummary(newParams);
-	// };
-
 	// Function to make the API call with a delay of 100ms
+	// Function to make the API call
 	const getCrimesMonthSummaryAsync = async (date) => {
-		return new Promise((resolve) => {
-			setTimeout(async () => {
-				const newParams = {
-					category: "all-crime",
-					date: date,
-					polyBoundaryQuery,
-				};
-				// Start try stuff
-				try {
-					const result = await getCrimesMonthSummary(newParams);
-					resolve(result);
-				} catch (error) {
-					console.log("error in async !!!!!!!!!!!!!!");
-					console.log(error);
-					return getCrimesMonthSummaryAsync(date);
-				}
-				// End try stuff
-				// const result = await getCrimesMonthSummary(newParams);
-				// resolve(result);
-			}, 500); // Add a delay of 100ms
-		});
+		const newParams = {
+			category: "all-crime",
+			date: date,
+			polyBoundaryQuery,
+		};
+		return await getCrimesMonthSummary(newParams);
 	};
+
+	// Returns a Promise that resolves after "ms" Milliseconds
+	const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 
 	// Create an array of promises for all the API calls
 	// const promises = queryDates.map(getCrimesMonthSummaryAsync);
-	await new Promise((resolve) => setTimeout(resolve, 500));
-	const promises = queryDates.map(getCrimesMonthSummaryAsync);
+	// await new Promise((resolve) => setTimeout(resolve, 500));
+	// console.log("after promises")
+	let promises = []
+	for (let i = 0; i < queryDates.length; i++) {
+		await timer(200);
+		promises.push(getCrimesMonthSummaryAsync(queryDates[i]))
+	}
+	// const promises = queryDates.map(getCrimesMonthSummaryAsync);
 
 	// Wait for all promises to resolve
 	const monthDataArray = await Promise.all(promises);
