@@ -19,6 +19,9 @@ export const getCrimesYearSummary = async (params) => {
 		? params.polyBoundaryQuery
 		: null;
 
+	console.log("polyBoundaryQuery in getCrimesYear")
+	console.log(polyBoundaryQuery)
+
 	// console.log("polyBoundaryQuery");
 	// console.log(polyBoundaryQuery);
 

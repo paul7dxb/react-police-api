@@ -47,7 +47,7 @@ const CustomSearch = () => {
 		}
 	}, [catDateParams]);
 
-	console.log("polyBoundaryQuery");
+	console.log("polyBoundaryQuery in custom Search");
 	console.log(polyBoundaryQuery);
 
 	const getMonthCrimes = async () => {
@@ -73,7 +73,7 @@ const CustomSearch = () => {
 			<CustomSearchInput searchFormSubmitted={searchFromSubmitted} />
 
 			{polyBoundaryQuery ? (
-				<NeighbourhoodData
+				<NeighbourhoodData key={polyBoundaryQuery}
 					polyBoundaryQuery={polyBoundaryQuery}
 					setCatDateParams={setCatDateParams}
 				/>

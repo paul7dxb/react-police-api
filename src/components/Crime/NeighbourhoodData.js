@@ -18,6 +18,8 @@ const NeighbourhoodYearSummary = (props) => {
 	// const [refinedDataPoint, setRefinedDataPoint] = useState(null);
 
 	const fetchYearDataHandler = useCallback(async () => {
+		console.log("props.polyBoundaryQuery in callback")
+		console.log(props.polyBoundaryQuery)
 		setIsLoading(true)
 		try {
 			const response = await getCrimesYearSummary({
@@ -25,6 +27,8 @@ const NeighbourhoodYearSummary = (props) => {
 				polyBoundaryQuery: props.polyBoundaryQuery,
 			});
 			setYearData(response);
+			console.log("setting New year data")
+			console.log(response)
 			setapiError(response.errorMessage);
 		} catch (error) {
 			setapiError(error.message);
