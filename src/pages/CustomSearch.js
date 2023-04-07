@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { createCircleCoordinatesPoly } from "../util/PolyCircle";
 import NeighbourhoodData from "../components/Crime/NeighbourhoodData";
 import PageBanner from "../components/UI/PageBanner";
@@ -24,12 +25,8 @@ const CustomSearch = () => {
 	};
 
 	useEffect(() => {
-		console.log("use effect lat lng");
 		if (lat && lng && radius) {
-			console.log("setpolyCalled");
-			// if (!polyBoundaryQuery) {
 			setPolyBoundaryQuery(createCircleCoordinatesPoly(lat, lng, radius));
-			// }
 		}
 	}, [lat, lng, radius]);
 
@@ -41,17 +38,12 @@ const CustomSearch = () => {
 
 	useEffect(() => {
 		if (catDateParams.date) {
-			// console.log("catDateParams")
-			// console.log(catDateParams)
 			getMonthCrimes();
 		}
 	}, [catDateParams]);
 
-	console.log("polyBoundaryQuery in custom Search");
-	console.log(polyBoundaryQuery);
 
 	const getMonthCrimes = async () => {
-		console.log("getMonths");
 		const monthsCrime = await getCrimesMonthDetail({
 			date: catDateParams.date,
 			category: catDateParams.category,
@@ -63,11 +55,13 @@ const CustomSearch = () => {
 	return (
 		<>
 			<PageBanner>
-				<h1>Search Around a Location</h1>
+				<h1>Search Around A Location</h1>
 				<p>
 					Use you own parameters to search for crime around a specific
-					point.
+					point. The radius will define how far from the location crimes will be found.
 				</p>
+				<p>The search is performed using a location's latitude and longitude. The easiest way to find these for a desired location is by placing a selecting a point in <a href="https://www.google.com/maps">Google Maps</a> and reading the values from the box that will pop up.</p>
+				<p>Note: Crime locaitons go through an anonymisation and are not always precisely located. See more <Link to="/more-info">here</Link>.</p>
 			</PageBanner>
 
 			<CustomSearchInput searchFormSubmitted={searchFromSubmitted} />

@@ -15,6 +15,8 @@ const CustomSearchInput = ({ searchFormSubmitted }) => {
 	const [radiusInputValue, setRadiusInputValue] = useState(0);
 	const [fetchingLocation, setFetchingLocation] = useState(false);
 
+	const [locationFetchError, setLocationFetchError] =useState(null)
+
 	const searchFormHandler = (event) => {
 		event.preventDefault();
 		const inputLat = latitudeInput.current.value;
@@ -26,27 +28,23 @@ const CustomSearchInput = ({ searchFormSubmitted }) => {
 	};
 
 	const getLocationHandler = () => {
-		console.log("get location");
 		setFetchingLocation(true);
 		const myLocation = getUserLocation(successLocation, errorLocation);
-		console.log(myLocation);
 	};
 	const successLocation = (position) => {
-		console.log("position");
-		console.log(position.coords);
 		setLatitudeInputValue(position.coords.latitude);
 		setLongitudeInputValue(position.coords.longitude);
 		setFetchingLocation(false);
 	};
 	const errorLocation = (error) => {
-		console.log("error getting location");
-		console.log(error);
+		setLocationFetchError(error.message)
 		setFetchingLocation(false);
 	};
 
 	return (
 		<Card>
 			<h3>Set Parameters for the search</h3>
+			{locationFetchError ? <p className={classes.locationError} >Unable to get user's location: {locationFetchError}</p> : undefined }
 			<form className={classes.form} onSubmit={searchFormHandler}>
 				<div className={classes.formInputs}>
 					<div className={classes.formField}>

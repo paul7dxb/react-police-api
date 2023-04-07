@@ -1,6 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { getAllNeighbourhoods } from "../util/AllNeighbourhoods";
-import { getErrorMessageFromResponseCode } from "../util/errorMessages";
+import { getErrorMessageFromResponseCode } from "../util/ErrorMessages";
 import NeighbourhoodList from "../components/Force/NeighbourhoodList";
 import PageBanner from "../components/UI/PageBanner";
 import PageSubBanner from "../components/UI/PageSubBanner";

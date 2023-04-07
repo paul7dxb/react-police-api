@@ -13,3 +13,7 @@
 .formField {
     padding: var(--paddingSmall);
 }
+
+.locationError{
+color: var(--errorColor);
+}
