@@ -41,6 +41,7 @@ const CustomSearchInput = ({ searchFormSubmitted }) => {
 	const errorLocation = (error) => {
 		console.log("error getting location");
 		console.log(error);
+		setFetchingLocation(false);
 	};
 
 	return (
@@ -77,11 +78,12 @@ const CustomSearchInput = ({ searchFormSubmitted }) => {
 						<input
 							ref={radiusInput}
 							value={radiusInputValue}
+							min={0.01}
 							onChange={(event) =>
 								setRadiusInputValue(event.target.value)
 							}
 							type="number"
-							step="0.1"
+							step="0.01"
 						/>
 					</div>
 				</div>{" "}
@@ -89,7 +91,7 @@ const CustomSearchInput = ({ searchFormSubmitted }) => {
 					onClick={getLocationHandler}
 					disabled={fetchingLocation}
 				>
-					{fetchingLocation ? "Fetching Location" : "Get location"}
+					{fetchingLocation ? "Fetching Location" : "Use Your Location"}
 				</button>
 				<button>Search</button>
 			</form>

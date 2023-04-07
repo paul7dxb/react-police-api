@@ -1,7 +1,7 @@
 export const getUserLocation = (successPositionCallback, errorPositionCallback) => {
 	if (navigator.geolocation) {
-		const userLocation = navigator.geolocation.getCurrentPosition(
-			successPositionCallback
+		navigator.geolocation.getCurrentPosition(
+			successPositionCallback, errorPositionCallback
 		);
 	} else {
 		console.log("Geolocation is not supported by this browser.");
