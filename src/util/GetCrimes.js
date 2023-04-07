@@ -4,12 +4,10 @@ import { convertYearDataToChartSeries } from "./GraphFunctions";
 
 // Params category, polyBoundary
 export const getCrimesYearSummary = async (params) => {
-	console.log("params");
-	console.log(params);
 	let queryDates = [];
 	queryDates = await getLastYear();
 
-	let errorMessage = null;
+	const errorMessages = [];
 
 	let yearSummaryData = [];
 	const allCategoriesSet = new Set();
@@ -44,12 +42,20 @@ export const getCrimesYearSummary = async (params) => {
 	// Function to make the API call with a delay of 100ms
 	// Function to make the API call
 	const getCrimesMonthSummaryAsync = async (date) => {
+		let response;
 		const newParams = {
 			category: "all-crime",
 			date: date,
 			polyBoundaryQuery,
 		};
-		return await getCrimesMonthSummary(newParams);
+		try {
+			response = await getCrimesMonthSummary(newParams);
+		} catch (error){
+			console.log("Error in async get request!!!");
+			response = { data: {}, errorMessage: error, date };
+		}
+		return response;
+		// return await getCrimesMonthSummary(newParams);
 	};
 
 	// Returns a Promise that resolves after "ms" Milliseconds
@@ -59,10 +65,10 @@ export const getCrimesYearSummary = async (params) => {
 	// const promises = queryDates.map(getCrimesMonthSummaryAsync);
 	// await new Promise((resolve) => setTimeout(resolve, 500));
 	// console.log("after promises")
-	let promises = []
+	let promises = [];
 	for (let i = 0; i < queryDates.length; i++) {
 		await timer(200);
-		promises.push(getCrimesMonthSummaryAsync(queryDates[i]))
+		promises.push(getCrimesMonthSummaryAsync(queryDates[i]));
 	}
 	// const promises = queryDates.map(getCrimesMonthSummaryAsync);
 
@@ -73,7 +79,10 @@ export const getCrimesYearSummary = async (params) => {
 	for (let i = 0; i < monthDataArray.length; i++) {
 		const newMonthData = monthDataArray[i];
 		if (newMonthData.errorMessage) {
-			errorMessage = yearSummaryData[i].error;
+			errorMessages.push("error in getting data for: " + newMonthData.date)
+			// yearSummaryData[i].error = errorMessage
+			yearSummaryData.push({});
+
 		} else {
 			// Extract categories
 			newMonthData.data.categories.forEach(
@@ -94,7 +103,7 @@ export const getCrimesYearSummary = async (params) => {
 
 	return {
 		data: yearSummaryData,
-		errorMessage,
+		errorMessages,
 		barChartSeries,
 		barChartLabels: queryDates,
 		allCategoriesArray,
@@ -103,6 +112,7 @@ export const getCrimesYearSummary = async (params) => {
 
 // Expected params {date, category, polyBoundaryQuery}
 export const getCrimesMonthDetail = async (params) => {
+
 	const apiQuery = createQuery(params);
 	const date = params.date;
 	let errorMessage = null;
@@ -139,6 +149,9 @@ export const getCrimesMonthDetail = async (params) => {
 };
 
 export const getCrimesMonthSummary = async (params) => {
+
+
+
 	const apiQuery = createQuery(params);
 	const date = params.date;
 	let errorMessage = null;
@@ -158,7 +171,7 @@ export const getCrimesMonthSummary = async (params) => {
 
 			return { data: summaryData, errorMessage, date };
 		} else {
-			console.log("error in getMonths");
+			// console.log("error in getMonths");
 			return {
 				data: null,
 				errorMessage: getErrorMessageFromResponseCode(returnCode),

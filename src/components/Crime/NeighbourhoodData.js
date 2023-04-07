@@ -8,7 +8,6 @@ import classes from "./NeighbourhoodYearSummary.module.css";
 import Loader from "../UI/Loader";
 
 const NeighbourhoodYearSummary = (props) => {
-	console.log("new Render NeighbourHoooddata")
 	// Year Summary Data
 	const [yearData, setYearData] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -19,9 +18,7 @@ const NeighbourhoodYearSummary = (props) => {
 	// const [refinedDataPoint, setRefinedDataPoint] = useState(null);
 
 	const fetchYearDataHandler = useCallback(async () => {
-	// useCallback(async () => {
-		console.log("props.polyBoundaryQuery in callback");
-		// console.log(props.polyBoundaryQuery);
+
 		setIsLoading(true);
 		try {
 			const response = await getCrimesYearSummary({
@@ -29,19 +26,17 @@ const NeighbourhoodYearSummary = (props) => {
 				polyBoundaryQuery: props.polyBoundaryQuery,
 			});
 			setYearData(response);
-			console.log("setting New year data");
-			console.log(response);
-			setapiError(response.errorMessage);
+			setapiError(response.errorMessages);
 		} catch (error) {
-			setapiError(error.message);
+			setapiError(error.messages);
 		}
 		setIsLoading(false);
 	}, []);
 
 	useEffect(() => {
-		console.log("useEffect Data")
 		fetchYearDataHandler();
 	}, []);
+
 
 	// Click Handler
 	const yearGraphClickedHandler = ({ type, date, category, labelIndex }) => {
@@ -59,7 +54,6 @@ const NeighbourhoodYearSummary = (props) => {
 				props.setCatDateParams({ date, category });
 				break;
 		}
-		console.log(yearData);
 	};
 
 	if (isLoading) {
@@ -69,6 +63,7 @@ const NeighbourhoodYearSummary = (props) => {
 	if (!isLoading && yearData.barChartSeries) {
 		return (
 			<>
+			{apiError.length > 0 ? <Card> <p>Something went wrong fetching data: {apiError}</p> </Card> : undefined}
 				<Card className={classes.graphCard}>
 					<StackedBarYear
 						barChartSeries={yearData.barChartSeries}
