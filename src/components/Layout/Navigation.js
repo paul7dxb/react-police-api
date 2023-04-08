@@ -10,14 +10,21 @@ const Navigation = () => {
 	const handleShowNavbar = () => {
 		setShowNavbar(!showNavbar);
 	};
+	const navLinkSelectHandler = () => {
+		setShowNavbar(false);
+	};
 
 	return (
 		<header className={classes.header}>
-			<GiHamburgerMenu className={classes.menuIcon} onClick={handleShowNavbar}/>
-			<nav >
-				<ul className={showNavbar? classes.navbarActive : ""}>
+			<GiHamburgerMenu
+				className={classes.menuIcon}
+				onClick={handleShowNavbar}
+			/>
+			<nav>
+				<ul className={showNavbar ? classes.navbarActive : ""}>
 					<li>
 						<NavLink
+							onClick={navLinkSelectHandler}
 							to="/"
 							className={({ isActive }) =>
 								isActive ? classes.active : undefined
@@ -28,6 +35,7 @@ const Navigation = () => {
 					</li>
 					<li>
 						<NavLink
+							onClick={navLinkSelectHandler}
 							to="/forces"
 							className={({ isActive }) =>
 								isActive ? classes.active : undefined
@@ -38,6 +46,7 @@ const Navigation = () => {
 					</li>
 					<li>
 						<NavLink
+							onClick={navLinkSelectHandler}
 							to="/search"
 							className={({ isActive }) =>
 								isActive ? classes.active : undefined
@@ -48,6 +57,7 @@ const Navigation = () => {
 					</li>
 					<li>
 						<NavLink
+							onClick={navLinkSelectHandler}
 							to="/more-info"
 							className={({ isActive }) =>
 								isActive ? classes.active : undefined
