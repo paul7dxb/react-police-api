@@ -16,14 +16,14 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    align-content: center;
-    text-align: center;
-    opacity: 0;
+	align-content: center;
+	text-align: center;
+	opacity: 0;
 }
 
-.linkCard :global{
-    animation: fadeIn 1.5s forwards;
-	animation-delay: 0.1s; 
+.linkCard :global {
+	animation: fadeIn 1.5s forwards;
+	animation-delay: 0.1s;
 }
 
 .linkCard:hover {
@@ -35,4 +35,11 @@
 
 	/* flex-grow: 1; */
 	/* color: white; */
+}
+
+@media only screen and (max-width: 768px) {
+	.linkCard {
+		padding: 5px 10px;
+		margin: var(--marginXSmall);
+	}
 }

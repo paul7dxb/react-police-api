@@ -1,19 +1,35 @@
-.forceFilterInput{
-    margin: var(--marginMedium);
-    font-size: 1.2rem;
-    padding: var(--paddingSmall);
-    opacity: 0;
+.forceFilterInput {
+	margin: var(--marginMedium);
+	font-size: 1.2rem;
+	padding: var(--paddingSmall);
+	opacity: 0;
 }
 
-.forceFilterInput:global{
-    animation: fadeIn 1.5s forwards;
-    animation-delay: 0.1s; 
+.forceFilterInput:global {
+	animation: fadeIn 1.5s forwards;
+	animation-delay: 0.1s;
 }
 
-.forceListContainer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: center;
-    padding: var(--paddingMedium);
+.forceListContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: center;
+	padding: var(--paddingMedium);
+}
+
+@media only screen and (max-width: 768px) {
+	.forceFilterInput {
+		/* position: relative; */
+		margin: var(--marginSmall) auto;
+		display: block;
+		font-size: 1.2rem;
+		padding: var(--paddingSmall);
+		opacity: 0;
+	}
+
+	.forceListContainer {
+		justify-content: center;
+		padding: var(--paddingSmall);
+	}
 }

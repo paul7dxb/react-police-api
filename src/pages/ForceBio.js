@@ -8,6 +8,8 @@ import Card from "../components/UI/Card";
 import classes from "./ForceBio.module.css";
 import ForceLinks from "../components/Force/ForceLinks";
 
+import {FaPhone as PhoneIcon} from "react-icons/fa"
+
 const ForceBio = (props) => {
 	const params = useParams();
 	const loaderData = useLoaderData();
@@ -49,33 +51,33 @@ const ForceBio = (props) => {
 				</PageBanner>
 				<div className={classes.bioContainer}>
 					<Card>
-						<h2>Telephone</h2>
-						<p> {forceTeleOutput} </p>
-					</Card>
-					{/* <Card>
-						<h2>Links</h2>
+						<h2>Telephone:</h2>
 						<ul>
-							<li key="website">
-								<span>Website: </span>
+							<li
+								className={classes.engagementListItem}
+								key="website"
+							>
+								<PhoneIcon className={classes.engagementIcon} />
+								<span className={classes.linkTitle}>
+									{" "}{forceTeleOutput}
+								</span>
 								<a href={forceURL}>{forceURL}</a>
 							</li>
-							{engagementLinks.map((elem) => (
-								<li key={elem.title}>
-									<span>{elem.title}: </span>
-									{elem.url ? (
-										<a href={elem.url}>{elem.url}</a>
-									) : (
-										<span> Data not provided </span>
-									)}
-								</li>
-							))}
 						</ul>
-					</Card> */}
-					<ForceLinks engagementLinks={engagementLinks} forceURL={forceURL} />
+					</Card>
+					<ForceLinks
+						engagementLinks={engagementLinks}
+						forceURL={forceURL}
+					/>
 				</div>
 				<PageSubBanner>
 					<h2>Neighbourhoods</h2>
-					<p>{forceData.name} splits its area of responsibility into multiple neighbourhoods listed below. Selecting one will allow you to see in depth details about crime in this neighbourhood</p>
+					<p>
+						{forceData.name} splits its area of responsibility into
+						multiple neighbourhoods listed below. Selecting one will
+						allow you to view data about crimes in this
+						neighbourhood
+					</p>
 				</PageSubBanner>
 				<NeighbourhoodList neighbourhoodData={neighbourhoodData} />
 			</>

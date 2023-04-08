@@ -1,21 +1,21 @@
-.neighbourhoodFilterInput{
-    margin: var(--marginMedium);
-    font-size: 1.2rem;
-    padding: var(--paddingSmall);
+.neighbourhoodFilterInput {
+	margin: var(--marginMedium);
+	font-size: 1.2rem;
+	padding: var(--paddingSmall);
 	opacity: 0;
 }
 
-.neighbourhoodFilterInput:global{
-    animation: fadeIn var(--animationDurationMedium) forwards;
-	animation-delay: var(--animationDelayMedium); 
+.neighbourhoodFilterInput:global {
+	animation: fadeIn var(--animationDurationMedium) forwards;
+	animation-delay: var(--animationDelayMedium);
 }
 
-.neighbourhoodListContainer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: center;
-    padding: var(--paddingMedium);
+.neighbourhoodListContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: center;
+	padding: var(--paddingMedium);
 }
 
 .linkCard {
@@ -36,15 +36,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    align-content: center;
-    text-align: center;
+	align-content: center;
+	text-align: center;
 
 	opacity: 0;
 }
 
-.linkCard :global{
-    animation: fadeIn var(--animationDurationMedium) forwards;
-	animation-delay: var(--animationDelayMedium); 
+.linkCard :global {
+	animation: fadeIn var(--animationDurationMedium) forwards;
+	animation-delay: var(--animationDelayMedium);
 }
 
 .linkCard:hover {
@@ -56,4 +56,25 @@
 
 	/* flex-grow: 1; */
 	/* color: white; */
+}
+
+@media only screen and (max-width: 768px) {
+	.neighbourhoodFilterInput {
+		/* position: relative; */
+		margin: var(--marginSmall) auto;
+		display: block;
+		font-size: 1.2rem;
+		padding: var(--paddingSmall);
+		opacity: 0;
+	}
+
+	.neighbourhoodListContainer {
+		justify-content: center;
+		padding: var(--paddingSmall);
+	}
+
+	.linkCard {
+		padding: 5px 10px;
+		margin: var(--marginXSmall);
+	}
 }
