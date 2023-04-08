@@ -3,6 +3,11 @@
     margin: var(--marginMedium) auto;
     height: 60vh;
 }
+
+/* .yearGraphCard tspan:global:hover{
+    background-color: aqua;
+} */
+
 .monthGraphCard{
     width: 90%;
     margin: var(--marginMedium) auto;

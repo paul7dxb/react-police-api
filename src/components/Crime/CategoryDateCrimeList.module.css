@@ -1,3 +1,16 @@
+.crimeLocFilterInput {
+	margin: var(--marginMedium);
+	font-size: 1.2rem;
+	padding: var(--paddingSmall);
+	opacity: 0;
+}
+
+.crimeLocFilterInput:global {
+	animation: fadeIn 1.5s forwards;
+	animation-delay: 0.1s;
+}
+
+
 .crimeListContainer{
 	display: flex;
 	flex-wrap: wrap;
@@ -7,6 +20,14 @@
 }
 
 @media only screen and (max-width: 768px) {
+	.crimeLocFilterInput {
+		margin: var(--marginSmall) auto;
+		display: block;
+		font-size: 1.2rem;
+		padding: var(--paddingSmall);
+		opacity: 0;
+	}
+
 	.neighbourhoodListContainer {
 		justify-content: center;
 		padding: var(--paddingSmall);
