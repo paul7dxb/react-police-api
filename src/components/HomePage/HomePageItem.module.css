@@ -1,3 +1,6 @@
+@import "animate.css";
+
+
 .rightCard,
 .leftCard {
 	width: 40%;
@@ -13,6 +16,8 @@
 	/* display: inline-block; */
 }
 
+
+
 .titleLink {
 	font-size: 1.6rem;
 	font-weight: 500;
@@ -25,14 +30,17 @@
 }
 
 .sectionContainer, .sectionContainerReverse {
-	--imageWidth: 300px
-
+	--imageWidth: 300px;
 	margin: var(--marginMedium);
 	display: flex;
 	justify-content: center;
-
-	animation: pulse 1s;
+	opacity: 0;
 }
+
+.sectionContainer :global ,.sectionContainerReverse :global {
+	animation: fadeIn 1.5s forwards;
+	animation-delay: 0.3s; 
+ }
 
 .sectionContainerReverse{
 	flex-direction: row-reverse;

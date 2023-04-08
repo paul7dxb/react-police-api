@@ -1,5 +1,11 @@
 .banner{
     background-color: var(--pallettePrimaryDark);
     color: var(--palletteWhite);
-    padding: 10px
+    padding: 10px;
+    opacity: 0;
 }
+
+.banner :global {
+	animation: fadeIn 1.5s forwards;
+	animation-delay: 0.1s; 
+ }

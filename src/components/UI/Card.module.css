@@ -5,5 +5,11 @@
     /* max-width: 500px; */
     background-color: var(--palletteWhite);
     padding: 10px;
+    opacity: 0;
+}
+
+.card :global{
+    animation: fadeIn 1.5s forwards;
+	animation-delay: 0.1s; 
 }
 

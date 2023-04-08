@@ -1,3 +1,15 @@
+@import "animate.css";
+
+/* p {
+	animation: pulse 1s;
+	animation-delay: 1.3s;
+}
+
+main {
+	animation: fadeIn 1s forwards;
+	/* animation-delay: 1s; */
+/* } */
+
 :root {
 	--palletteWhite: #f7f6f6;
 	--palletteAccentLight: #c94473;
@@ -36,13 +48,13 @@ button {
 }
 
 button:hover:enabled {
-  color: var(--palletteAccentLight);
+	color: var(--palletteAccentLight);
 	border-color: var(--palletteAccentLight);
 	box-shadow: 0 0.5em 0.5em -0.4em var(--palletteAccentLight);
 	/* Lift using transform */
 	transform: translateY(-0.25em);
 }
 
-button:disabled{
+button:disabled {
 	border-color: var(--palletteAccentDark);
 }

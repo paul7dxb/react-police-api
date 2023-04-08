@@ -18,6 +18,12 @@
 	justify-content: center;
     align-content: center;
     text-align: center;
+    opacity: 0;
+}
+
+.linkCard :global{
+    animation: fadeIn 1.5s forwards;
+	animation-delay: 0.1s; 
 }
 
 .linkCard:hover {
