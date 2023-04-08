@@ -2,5 +2,11 @@
     background-color: var(--pallettePrimaryDark);
     color: white;
     width: fit-content;
-    padding: var(--paddingSmall) var(--paddingLarge) var(--paddingSmall) var(--paddingSmall)
+    padding: var(--paddingSmall) var(--paddingLarge) var(--paddingSmall) var(--paddingSmall);
+    opacity: 0;
+}
+
+.subbanner:global{
+    animation: fadeIn 1.5s forwards;
+	animation-delay: 0.2s; 
 }

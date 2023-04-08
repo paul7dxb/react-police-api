@@ -2,6 +2,12 @@
     margin: var(--marginMedium);
     font-size: 1.2rem;
     padding: var(--paddingSmall);
+	opacity: 0;
+}
+
+.neighbourhoodFilterInput:global{
+    animation: fadeIn var(--animationDurationMedium) forwards;
+	animation-delay: var(--animationDelayMedium); 
 }
 
 .neighbourhoodListContainer{
@@ -32,6 +38,13 @@
 	justify-content: center;
     align-content: center;
     text-align: center;
+
+	opacity: 0;
+}
+
+.linkCard :global{
+    animation: fadeIn var(--animationDurationMedium) forwards;
+	animation-delay: var(--animationDelayMedium); 
 }
 
 .linkCard:hover {

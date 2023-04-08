@@ -1,6 +1,5 @@
 @import "animate.css";
 
-
 .rightCard,
 .leftCard {
 	width: 40%;
@@ -16,8 +15,6 @@
 	/* display: inline-block; */
 }
 
-
-
 .titleLink {
 	font-size: 1.6rem;
 	font-weight: 500;
@@ -29,7 +26,8 @@
 	font-weight: 700;
 }
 
-.sectionContainer, .sectionContainerReverse {
+.sectionContainer,
+.sectionContainerReverse {
 	--imageWidth: 300px;
 	margin: var(--marginMedium);
 	display: flex;
@@ -37,12 +35,13 @@
 	opacity: 0;
 }
 
-.sectionContainer :global ,.sectionContainerReverse :global {
+.sectionContainer :global,
+.sectionContainerReverse :global {
 	animation: fadeIn 1.5s forwards;
-	animation-delay: 0.3s; 
- }
+	animation-delay: 0.3s;
+}
 
-.sectionContainerReverse{
+.sectionContainerReverse {
 	flex-direction: row-reverse;
 }
 
@@ -57,6 +56,14 @@
 
 	border-radius: 5px;
 	box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+
+	opacity: 0;
+}
+
+.imgLeft:global,
+.imgRight:global {
+	animation: fadeIn var(--animationDurationMedium) forwards;
+	animation-delay: var(--animationDelayLong);
 }
 
 .imgLeft {
@@ -71,7 +78,8 @@
 		padding-bottom: var(--paddingLarge);
 	}
 
-	.sectionContainer, .sectionContainerReverse {
+	.sectionContainer,
+	.sectionContainerReverse {
 		margin: var(--marginSmall);
 		margin-bottom: var(--marginMedium);
 		flex-direction: column;
@@ -83,7 +91,5 @@
 		margin: 0;
 		width: 90%;
 		margin-top: -7%;
-
-
 	}
 }

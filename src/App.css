@@ -32,6 +32,14 @@ main {
 	--marginSmall: 10px;
 	--marginMedium: 25px;
 	--marginLarge: 50px;
+
+	--animationDelayShort: 0.1s;
+	--animationDelayMedium: 0.3s;
+	--animationDelayLong: 0.5s;
+
+	--animationDurationShort: 0.5s;
+	--animationDurationMedium: 1.5s;
+	--animationDurationLong: 2.5s;
 }
 
 body {

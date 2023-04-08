@@ -2,6 +2,12 @@
     margin: var(--marginMedium);
     font-size: 1.2rem;
     padding: var(--paddingSmall);
+    opacity: 0;
+}
+
+.forceFilterInput:global{
+    animation: fadeIn 1.5s forwards;
+    animation-delay: 0.1s; 
 }
 
 .forceListContainer{

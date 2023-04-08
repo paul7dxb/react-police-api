@@ -10,6 +10,6 @@
 
 .card :global{
     animation: fadeIn 1.5s forwards;
-	animation-delay: 0.1s; 
+	animation-delay: var(--animationDelayMedium); 
 }
 
