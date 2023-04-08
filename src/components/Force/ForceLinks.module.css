@@ -11,3 +11,9 @@
 .linkTitle{
     font-size: 1.1rem;
 }
+
+@media only screen and (max-width: 768px) {
+    .ul{
+        padding-left: var(--paddingSmall);
+    }
+}

@@ -1,4 +1,23 @@
-.graphCard{
-    width: fit-content;
+.yearGraphCard{
+    width: 90%;
     margin: var(--marginMedium) auto;
+    height: 60vh;
+}
+.monthGraphCard{
+    width: 90%;
+    margin: var(--marginMedium) auto;
+    height: 40vh;
+}
+
+@media only screen and (max-width: 768px) {
+    .yearGraphCard{
+        width: 95%;
+        margin: var(--marginSmall) auto;
+        height: 100vh;
+    }
+    .monthGraphCard{
+        width: 95%;
+        margin: var(--marginSmall) auto;
+        height: 50vh;
+    }
 }

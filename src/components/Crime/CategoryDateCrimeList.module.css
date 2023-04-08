@@ -1,0 +1,14 @@
+.crimeListContainer{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: center;
+	padding: var(--paddingMedium);
+}
+
+@media only screen and (max-width: 768px) {
+	.neighbourhoodListContainer {
+		justify-content: center;
+		padding: var(--paddingSmall);
+	}
+}

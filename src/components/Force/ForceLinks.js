@@ -4,12 +4,11 @@ import { BsGlobe as WebIcon } from "react-icons/bs";
 import classes from "./ForceLinks.module.css";
 
 const ForceLinks = ({ engagementLinks, forceURL }) => {
-	console.log(engagementLinks);
 
 	return (
 		<Card>
 			<h2>Links:</h2>
-			<ul>
+			<ul className={classes.ul}>
 				<li className={classes.engagementListItem} key="website">
 					<WebIcon className={classes.engagementIcon} />
 					<span className={classes.linkTitle}> Website: </span>

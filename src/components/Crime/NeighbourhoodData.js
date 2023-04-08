@@ -64,7 +64,7 @@ const NeighbourhoodYearSummary = (props) => {
 		return (
 			<>
 			{apiError.length > 0 ? <Card> <p>Something went wrong fetching data: {apiError}</p> </Card> : undefined}
-				<Card className={classes.graphCard}>
+				<Card className={classes.yearGraphCard}>
 					<StackedBarYear
 						barChartSeries={yearData.barChartSeries}
 						barChartLabels={yearData.barChartLabels}
@@ -72,7 +72,7 @@ const NeighbourhoodYearSummary = (props) => {
 					/>
 				</Card>
 				{refinedRow ? (
-					<Card className={classes.graphCard}>
+					<Card className={classes.monthGraphCard}>
 						<BarChartMonth
 							date={refinedRow.date}
 							barChartSeries={refinedRow.categoryTotals}

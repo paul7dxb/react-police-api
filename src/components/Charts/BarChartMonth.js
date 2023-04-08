@@ -81,7 +81,8 @@ const BarChartMonth = (props) => {
 			<Chart
 				series={newData}
 				type="bar"
-				width="1000"
+				width="100%"
+				height="100%"
 				options={chartOptions}
 			/>
 		</>

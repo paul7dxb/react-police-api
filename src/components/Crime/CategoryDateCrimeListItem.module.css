@@ -2,6 +2,17 @@
     color: var(--pallettePrimary);
 }
 
-.myc{
+.crimeCard{
     width: fit-content;
+		padding: var(--paddingSmall);
+
+		margin: var(--marginSmall);
+
+}
+
+@media only screen and (max-width: 768px) {
+	.crimeCard {
+		padding: 5px 10px;
+		margin: var(--marginXSmall);
+	}
 }

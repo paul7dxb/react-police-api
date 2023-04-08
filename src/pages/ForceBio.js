@@ -52,7 +52,7 @@ const ForceBio = (props) => {
 				<div className={classes.bioContainer}>
 					<Card>
 						<h2>Telephone:</h2>
-						<ul>
+						<ul className={classes.ul}>
 							<li
 								className={classes.engagementListItem}
 								key="website"
@@ -61,7 +61,7 @@ const ForceBio = (props) => {
 								<span className={classes.linkTitle}>
 									{" "}{forceTeleOutput}
 								</span>
-								<a href={forceURL}>{forceURL}</a>
+								
 							</li>
 						</ul>
 					</Card>

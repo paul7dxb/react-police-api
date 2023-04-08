@@ -53,6 +53,7 @@
 
 	.header ul {
 		display: none;
+		padding-left: 0;
 	}
 
 	.header .navbarActive {
