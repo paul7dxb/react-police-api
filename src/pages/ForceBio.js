@@ -6,6 +6,7 @@ import PageBanner from "../components/UI/PageBanner";
 import PageSubBanner from "../components/UI/PageSubBanner";
 import Card from "../components/UI/Card";
 import classes from "./ForceBio.module.css";
+import ForceLinks from "../components/Force/ForceLinks";
 
 const ForceBio = (props) => {
 	const params = useParams();
@@ -51,7 +52,7 @@ const ForceBio = (props) => {
 						<h2>Telephone</h2>
 						<p> {forceTeleOutput} </p>
 					</Card>
-					<Card>
+					{/* <Card>
 						<h2>Links</h2>
 						<ul>
 							<li key="website">
@@ -69,7 +70,8 @@ const ForceBio = (props) => {
 								</li>
 							))}
 						</ul>
-					</Card>
+					</Card> */}
+					<ForceLinks engagementLinks={engagementLinks} forceURL={forceURL} />
 				</div>
 				<PageSubBanner>
 					<h2>Neighbourhoods</h2>

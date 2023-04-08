@@ -25,6 +25,7 @@ main {
 	--warningColor: #c68d35;
 	--errorColor: #f44336;
 
+	--paddingXSmall: 5px;
 	--paddingSmall: 10px;
 	--paddingMedium: 25px;
 	--paddingLarge: 50px;

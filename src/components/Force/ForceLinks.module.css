@@ -1,0 +1,13 @@
+.engagementListItem{
+    list-style: none;
+    padding: var(--paddingXSmall);
+}
+
+.engagementIcon{
+    color: var(--pallettePrimary);
+}
+
+
+.linkTitle{
+    font-size: 1.1rem;
+}
