@@ -12,17 +12,60 @@
 	gap: 4rem;
 	justify-content: center;
 	align-items: center;
-  font-weight: 700;
-  text-transform: uppercase;
+	font-weight: 700;
+	text-transform: uppercase;
 }
 
 .header a {
 	font-size: 1.25rem;
 	text-decoration: none;
 	color: #ffffff;
+	padding: var(--paddingSmall);
 }
 
 .header a:hover,
 .header a.active {
 	color: var(--palletteAccentLight);
+}
+
+/* Responsive */
+.menuIcon {
+	position: absolute;
+	right: var(--marginSmall);
+	color: #ffffff;
+	height: 25px;
+	width: 25px;
+	display: none;
+}
+
+@media only screen and (max-width: 768px) {
+	.menuIcon {
+		display: block;
+		position: absolute;
+		color: #ffffff;
+		min-height: 5vh;
+		cursor: pointer;
+	}
+
+	.menuIcon:hover {
+		color: var(--palletteAccentLight);
+	}
+
+	.header ul {
+		display: none;
+	}
+
+	.header .navbarActive {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		font-weight: 700;
+		gap: 2rem;
+
+		/* padding: 2rem; */
+	}
+	.header a {
+		padding: 1rem 4rem;
+	}
 }
