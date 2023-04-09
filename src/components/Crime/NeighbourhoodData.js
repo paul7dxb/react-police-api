@@ -42,8 +42,9 @@ const NeighbourhoodYearSummary = (props) => {
 	}, []);
 
 	useEffect(() => {
+		setRefinedRow(null)
 		fetchYearDataHandler();
-	}, []);
+	}, [props.polyBoundaryQuery]);
 
 	const dateSelectedHandler = (dropdown) => {
 		const chosenIndex = dropdown.target.selectedIndex - 1; // -1 because of index for "select an option"

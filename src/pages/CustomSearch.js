@@ -26,6 +26,7 @@ const CustomSearch = () => {
 
 	useEffect(() => {
 		if (lat && lng && radius) {
+			console.log("new boundary");
 			setPolyBoundaryQuery(createCircleCoordinatesPoly(lat, lng, radius));
 		}
 	}, [lat, lng, radius]);
@@ -36,13 +37,6 @@ const CustomSearch = () => {
 	});
 	const [catDateData, setCatDateData] = useState(null);
 
-	useEffect(() => {
-		if (catDateParams.date) {
-			getMonthCrimes();
-		}
-	}, [catDateParams]);
-
-
 	const getMonthCrimes = async () => {
 		const monthsCrime = await getCrimesMonthDetail({
 			date: catDateParams.date,
@@ -52,24 +46,61 @@ const CustomSearch = () => {
 		setCatDateData(monthsCrime);
 	};
 
+	const setDateParam = (date) => {
+		setCatDateParams((prevState) => {
+			return { ...prevState, date: date };
+		});
+	};
+
+	useEffect(() => {
+		// if (catDateParams.date) {
+		if (catDateParams.date && catDateParams.category) {
+			getMonthCrimes();
+		}
+	}, [catDateParams]);
+
+	useEffect(() => {
+		if (catDateParams) {
+			setCatDateParams({
+				date: null,
+				category: null,
+			});
+		}
+		if(catDateData){
+			setCatDateData(null)
+		}
+	}, [polyBoundaryQuery]);
+
 	return (
 		<>
 			<PageBanner>
 				<h1>Search Around A Location</h1>
 				<p>
 					Use you own parameters to search for crime around a specific
-					point. The radius will define how far from the location crimes will be found.
+					point. The radius will define how far from the location
+					crimes will be found.
 				</p>
-				<p>The search is performed using a location's latitude and longitude. The easiest way to find these for a desired location is by placing a selecting a point in <a href="https://www.google.com/maps">Google Maps</a> and reading the values from the box that will pop up.</p>
-				<p>Note: Crime locaitons go through an anonymisation and are not always precisely located. See more <Link to="/more-info">here</Link>.</p>
+				<p>
+					The search is performed using a location's latitude and
+					longitude. The easiest way to find these for a desired
+					location is by placing a selecting a point in{" "}
+					<a href="https://www.google.com/maps">Google Maps</a> and
+					reading the values from the box that will pop up.
+				</p>
+				<p>
+					Note: Crime locaitons go through an anonymisation and are
+					not always precisely located. See more{" "}
+					<Link to="/more-info">here</Link>.
+				</p>
 			</PageBanner>
 
 			<CustomSearchInput searchFormSubmitted={searchFromSubmitted} />
 
 			{polyBoundaryQuery ? (
-				<NeighbourhoodData key={polyBoundaryQuery}
+				<NeighbourhoodData
 					polyBoundaryQuery={polyBoundaryQuery}
 					setCatDateParams={setCatDateParams}
+					setDateParam={setDateParam}
 				/>
 			) : undefined}
 
