@@ -6,16 +6,16 @@ const homeData = [
 		title: "Forces",
 		targetPage: "/forces",
 		description:
-			"Dive into data provided by individual forces in England, Wales and Northern Ireland. Find out about crimes in each forces neighbourhoods over the last 12 months",
-		imgSrc: "https://paul7dxb.github.io/hosted-assets/PoliceSite/fromeData.png",
-		imgAlt: "Crime Data Bar Chart"
+			"Dive into data provided by individual forces in England, Wales and Northern Ireland. Find out about crimes in each forces neighbourhoods over the last 12 months.",
+		imgSrc: "https://paul7dxb.github.io/hosted-assets/PoliceSite/policeAreas.jpg",
+		imgAlt: "UK Police Areas of Responsibility"
 	},
 	{
 		title: "Custom Search",
 		targetPage: "/search",
 		description:
-			"Use your own parameters to conduct a search and analyze the returned data",
-		imgSrc: "https://paul7dxb.github.io/hosted-assets/PoliceSite/fromeData.png",
+			"Choose your own location and search for crime's within a specified distance of that location from the last 12 months.",
+		imgSrc: "https://paul7dxb.github.io/hosted-assets/PoliceSite/ukMapPins.jpg",
 		imgAlt: "Custom Search Image"
 	},
 	{
