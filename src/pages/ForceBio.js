@@ -9,15 +9,17 @@ import classes from "./ForceBio.module.css";
 import ForceLinks from "../components/Force/ForceLinks";
 
 import {FaPhone as PhoneIcon} from "react-icons/fa"
+import { useEffect } from "react";
 
 const ForceBio = (props) => {
-	const params = useParams();
 	const loaderData = useLoaderData();
 	const forceData = loaderData.forceData;
 
 	const neighbourhoodData = loaderData.neighbourhoodData;
 
-	// console.log(loaderData.neighbourhoodData)
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 
 	if (loaderData.errorMessage) {
 		return (

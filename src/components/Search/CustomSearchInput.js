@@ -77,6 +77,7 @@ const CustomSearchInput = ({ searchFormSubmitted }) => {
 							ref={radiusInput}
 							value={radiusInputValue}
 							min={0.01}
+							max={100}
 							onChange={(event) =>
 								setRadiusInputValue(event.target.value)
 							}
