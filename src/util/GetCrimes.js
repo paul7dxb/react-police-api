@@ -1,5 +1,5 @@
 import { getLastYear } from "./ApiDatabaseInfo";
-import { getErrorMessageFromResponseCode } from "./eerrorMessages";
+import { getErrorMessageFromResponseCode } from "./ErrorMessages";
 import { convertYearDataToChartSeries } from "./GraphFunctions";
 
 // Params category, polyBoundary

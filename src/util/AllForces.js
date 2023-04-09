@@ -1,4 +1,4 @@
-import { getErrorMessageFromResponseCode } from "./eerrorMessages";
+import { getErrorMessageFromResponseCode } from "./ErrorMessages";
 
 
 export const getAllForces = async() => {
