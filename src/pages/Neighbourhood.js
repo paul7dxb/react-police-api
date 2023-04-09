@@ -42,8 +42,7 @@ const Neighbourhood = (props) => {
 		return (
 			<>
 				<PageBanner>
-					<h1>Neighbourhood Details</h1>
-					<h2>{areaName}</h2>
+					<h1>Data for {areaName}</h1>
 				</PageBanner>
 				<NeighbourhoodData
 					polyBoundaryQuery={polyBoundaryQuery}
@@ -54,10 +53,10 @@ const Neighbourhood = (props) => {
 				{catDateData ? (
 					<>
 						<PageSubBanner>
-							<h1>
-								{catDateParams.category} crime during{" "}
+							<h2>
+								{catDateParams.category} during{" "}
 								{catDateParams.date}
-							</h1>
+							</h2>
 						</PageSubBanner>
 						<CategoryDateCrimeList
 							catDateData={catDateData}

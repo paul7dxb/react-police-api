@@ -8,18 +8,39 @@ import Card from "../components/UI/Card";
 import classes from "./ForceBio.module.css";
 import ForceLinks from "../components/Force/ForceLinks";
 
-import {FaPhone as PhoneIcon} from "react-icons/fa"
-import { useEffect } from "react";
+import { FaPhone as PhoneIcon } from "react-icons/fa";
+import { useCallback, useEffect, useState } from "react";
+
+import Loader from "../components/UI/Loader";
 
 const ForceBio = (props) => {
+	const [isLoading, setIsLoading] = useState(false);
+	const [neighbourhoodData, setNeighbourhoodData] = useState([]);
+	const [apiError, setapiError] = useState(null);
+
 	const loaderData = useLoaderData();
 	const forceData = loaderData.forceData;
-
-	const neighbourhoodData = loaderData.neighbourhoodData;
+	const id = loaderData.id;
 
 	useEffect(() => {
-		window.scrollTo(0, 0)
-	  }, [])
+		window.scrollTo(0, 0);
+	}, []);
+
+	const fetchNeighbourhoodListHandler = useCallback(async () => {
+		setIsLoading(true);
+		try {
+			const response = await getAllNeighbourhoods(id);
+			setNeighbourhoodData(response.data);
+			setapiError(response.errorMessage);
+		} catch (error) {
+			setapiError(error.message);
+		}
+		setIsLoading(false);
+	}, []);
+
+	useEffect(() => {
+		fetchNeighbourhoodListHandler();
+	}, [fetchNeighbourhoodListHandler]);
 
 	if (loaderData.errorMessage) {
 		return (
@@ -61,9 +82,9 @@ const ForceBio = (props) => {
 							>
 								<PhoneIcon className={classes.engagementIcon} />
 								<span className={classes.linkTitle}>
-									{" "}{forceTeleOutput}
+									{" "}
+									{forceTeleOutput}
 								</span>
-								
 							</li>
 						</ul>
 					</Card>
@@ -72,16 +93,32 @@ const ForceBio = (props) => {
 						forceURL={forceURL}
 					/>
 				</div>
-				<PageSubBanner>
-					<h2>Neighbourhoods</h2>
-					<p>
-						{forceData.name} splits its area of responsibility into
-						multiple neighbourhoods listed below. Selecting one will
-						allow you to view data about crimes in this
-						neighbourhood
-					</p>
-				</PageSubBanner>
-				<NeighbourhoodList neighbourhoodData={neighbourhoodData} />
+
+				{isLoading ? (
+					<Loader />
+				) : (
+					<>
+						<PageSubBanner>
+							<h2>Neighbourhoods</h2>
+							<p>
+								{forceData.name} splits its area of
+								responsibility into multiple neighbourhoods
+								listed below. Selecting one will allow you to
+								view data about crimes in this neighbourhood
+							</p>
+						</PageSubBanner>
+
+						<NeighbourhoodList
+							neighbourhoodData={neighbourhoodData}
+						/>
+					</>
+				)}
+				{apiError ? (
+					<>
+						<h1>Something Went Getting Neighbourhoods</h1>
+						<p>{apiError}</p>
+					</>
+				) : undefined}
 			</>
 		);
 	}
@@ -98,8 +135,6 @@ export default ForceBio;
 export async function loader({ request, params }) {
 	let returnCode = null;
 	let forceData = null;
-	let neighbourhoodReturn = null;
-	let neighbourhoodData = null;
 
 	const id = params.forceID;
 	const forceBioResponse = await fetch(
@@ -114,18 +149,6 @@ export async function loader({ request, params }) {
 		};
 	} else {
 		forceData = await forceBioResponse.json();
-
-		neighbourhoodReturn = await getAllNeighbourhoods(id);
-
-		if (neighbourhoodReturn.errorMessage) {
-			return {
-				forceData,
-				neighbourhoodData: null,
-				errorMessage: neighbourhoodReturn.errorMessage,
-			};
-		} else {
-			neighbourhoodData = neighbourhoodReturn.data;
-			return { forceData, neighbourhoodData, errorMessage: null };
-		}
+		return { forceData, id, errorMessage: null };
 	}
 }

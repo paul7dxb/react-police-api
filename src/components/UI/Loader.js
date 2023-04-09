@@ -4,7 +4,7 @@ const Loader = (props) => {
 	return (
 		<div className={classes.loaderContainer}>
 			<div className={classes.siren}></div>
-			<h2>{props.message}</h2>
+			<h2 className={classes.message}>{props.message}</h2>
 		</div>
 	);
 };

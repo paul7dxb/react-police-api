@@ -1,9 +1,11 @@
-
-/* Changes */
 .loaderContainer {
 	width: 300px;
 	text-align: center;
     margin: var(--marginLarge) auto;
+}
+
+.message{
+	color: var(--palletteWhite);
 }
 
 .siren {
