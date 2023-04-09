@@ -2,11 +2,8 @@ import Chart from "react-apexcharts";
 
 const BarChartMonth = (props) => {
 	const barChartSeries = props.barChartSeries;
-	// console.log("barChartSeries");
-	// console.log(barChartSeries);
 	const barChartLabels = props.barChartLabels;
-	// console.log("barChartLabels");
-	// console.log(barChartLabels);
+
 
 	const newData = [{ name: props.date, data: barChartSeries }];
 
@@ -17,11 +14,8 @@ const BarChartMonth = (props) => {
 			events: {
 				xAxisLabelClick: function (event, chartContext, config) {
 					// Axis Label selected
-					// console.log("x axis config");
-					// console.log(config);
 					let labelIndex = config.labelIndex;
 					let selectedCategory = barChartLabels[labelIndex];
-					// console.log(selectedCategory);
 
 					props.onClick({
 						type: "dataClickMonth",
@@ -31,11 +25,8 @@ const BarChartMonth = (props) => {
 				},
 				dataPointSelection: function (event, chartContext, config) {
 					// Specifc Data bar chosen
-					// console.log("data point config")
-					// console.log(config)
 					let selectedCategory =
 						barChartLabels[config.dataPointIndex];
-					// console.log(selectedCategory)
 
 					props.onClick({
 						type: "dataClickMonth",

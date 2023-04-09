@@ -45,7 +45,6 @@ export const getLastYear = async () => {
 	const lastDate = await getLastUpdated();
 	let curMonth = lastDate.data.month;
 	let curMonthIndex = monthsArr.indexOf(curMonth)
-	console.log(curMonthIndex)
 
 	let curYear = lastDate.data.year;
 

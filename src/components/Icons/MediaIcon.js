@@ -1,7 +1,8 @@
-import {GrFacebook as FacebookIcon, GrTwitter as TwitterIcon} from "react-icons/gr"
-import {FaFlickr as FlickrIcon, FaYoutube as YoutubeIcon, FaExternalLinkAlt as ExternalLinkIcon} from "react-icons/fa"
+import {GrFacebook as FacebookIcon, GrTwitter as TwitterIcon, GrMailOption as MailIcon} from "react-icons/gr"
+import {FaFlickr as FlickrIcon, FaYoutube as YoutubeIcon, FaExternalLinkAlt as ExternalLinkIcon, FaPhone as PhoneIcon} from "react-icons/fa"
 import { BsGlobe as WebIcon } from "react-icons/bs";
 import classes from "./MediaIcon.module.css"
+
 
 
 
@@ -23,6 +24,10 @@ const MediaIcon = ({icon}) => {
             return <YoutubeIcon className={classes.engagementIcon} />
         case "WEB":
             return <WebIcon className={classes.engagementIcon} />
+        case "TELEPHONE":
+            return <PhoneIcon className={classes.engagementIcon} />
+        case "EMAIL":
+            return <MailIcon className={classes.engagementIcon} />
         default:
             return <ExternalLinkIcon className={classes.engagementIcon} />
 

@@ -28,7 +28,7 @@ const ForcesList = () => {
 		fetchForcesListHandler();
 	}, [fetchForcesListHandler]);
 
-	console.log(forceFilter);
+	// console.log(forceFilter);
 
 	return (
 		<>

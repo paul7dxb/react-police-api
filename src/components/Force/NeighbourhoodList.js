@@ -7,7 +7,6 @@ const NeighbourhoodList = (props) => {
 	const params = useParams();
 	const [neighbourhoodFilter, setNeighbourhoodFilter] = useState("");
 
-	console.log(params);
 
 	return (
 		<>

@@ -62,33 +62,20 @@ const NeighbourhoodYearSummary = (props) => {
 
 	// Click Handler
 	const graphClickedHandler = ({ type, date, category, labelIndex }) => {
-		// console.log("labelIndex")
-		// console.log(labelIndex)
-		// console.log("date")
-		// console.log(date)
-		// console.log("cate")
-		// console.log(category)
 		switch (type) {
 			case "axisClick":
-				console.log("axisClick " + date + " #: " + labelIndex);
+				// console.log("axisClick " + date + " #: " + labelIndex);
 				totalsFromDate(date, labelIndex);
-				// let categoryTotals = [];
-				// yearData.barChartSeries.forEach(function (arrayItem) {
-				// 	categoryTotals.push(arrayItem.data[labelIndex]);
-				// });
-				// setRefinedRow({ date, categoryTotals });
 				break;
 			case "dataClick":
-				console.log("dataClick " + date + " : " + category);
+				// console.log("dataClick " + date + " : " + category);
 				totalsFromDate(date, labelIndex);
 				props.setCatDateParams({ date, category });
 				// setRefinedRowDate(date)
 				break;
 			case "dataClickMonth":
-				console.log("dataClick " + date + " : " + category);
-				// totalsFromDate(date, labelIndex);
+				// console.log("dataClick " + date + " : " + category);
 				props.setCatDateParams({ date, category });
-				// setRefinedRowDate(date)
 				break;
 		}
 	};
@@ -144,7 +131,6 @@ const NeighbourhoodYearSummary = (props) => {
 						/>
 					</Card>
 				) : undefined}
-				{/* {refinedDataPoint ? <CrimeList useLessProp={"234"} queryParams={refinedDataPoint}  /> : undefined} */}
 			</>
 		);
 	} else {

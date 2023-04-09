@@ -8,7 +8,6 @@ const RefinedDataSelctor = ({
 	if (!selectedValue) {
 		selectedValue = 0;
 	}
-	console.log("RefinedDataSelctor");
 
 	return (
 		<>

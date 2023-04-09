@@ -11,8 +11,7 @@ export const getAllForces = async() => {
 			if (!response.ok) {
 				throw new Error(response.status);
 			}
-			
-			console.log(data);
+
 
             returnCode = await response.status
             if(returnCode === 200){

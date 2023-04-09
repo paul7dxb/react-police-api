@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/Home";
-import TestGroundPage from "./pages/TestGroundPage";
 import RootLayout from "./pages/RootLayout";
 import Forces from "./pages/Forces";
 import ForceBio, {
@@ -8,10 +7,10 @@ import ForceBio, {
 } from "./pages/ForceBio";
 import Neighbourhood, {loader as neighbourhoodLoader} from "./pages/Neighbourhood"
 import MoreInfo from "./pages/MoreInfo"
-
 import "./App.css"
 import NotFoundPage from "./pages/NotFoundPage";
 import CustomSearch from "./pages/CustomSearch";
+// import TestGroundPage from "./pages/TestGroundPage";
 
 //Create router
 const router = createBrowserRouter([
@@ -41,7 +40,7 @@ const router = createBrowserRouter([
 				],
 			},
 			{ path: "search", element: <CustomSearch /> },
-			{ path: "testground", element: <TestGroundPage /> },
+			// { path: "testground", element: <TestGroundPage /> },
 			{ path: "more-info", element: <MoreInfo /> },
 			{path: "*", element: <NotFoundPage />}
 		],

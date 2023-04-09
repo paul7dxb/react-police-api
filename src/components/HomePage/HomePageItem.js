@@ -10,19 +10,17 @@ const HomePageItem = (props) => {
 	if (rightCard) {
 		return (
 			<div className={classes.sectionContainerReverse}>
-
 				<Card className={classes.rightCard}>
 					<Link className={classes.titleLink} to={props.targetPage}>
 						{props.title}
 					</Link>
 					<p>{props.description}</p>
-					<LinkButton url={props.targetPage} description={props.title + " Page"} />
+					<LinkButton
+						url={props.targetPage}
+						description={props.title + " Page"}
+					/>
 				</Card>
-				<img
-					className={classes.imgLeft}
-					src="https://paul7dxb.github.io/hosted-assets/PoliceSite/fromeData.png"
-					alt=""
-				/>
+				<img className={classes.imgLeft} src={props.imgSrc} alt={props.imgAlt} />
 			</div>
 		);
 	} else {
@@ -33,12 +31,12 @@ const HomePageItem = (props) => {
 						{props.title}
 					</Link>
 					<p>{props.description}</p>
-					<LinkButton url={props.targetPage} description={props.title + " Page"} />
+					<LinkButton
+						url={props.targetPage}
+						description={props.title + " Page"}
+					/>
 				</Card>
-				<img className={classes.imgRight}
-					src="https://paul7dxb.github.io/hosted-assets/PoliceSite/fromeData.png"
-					alt=""
-				/>
+				<img className={classes.imgRight} src={props.imgSrc} alt={props.imgAlt} />
 			</div>
 		);
 	}
