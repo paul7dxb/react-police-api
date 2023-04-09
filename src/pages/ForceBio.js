@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { getAllNeighbourhoods } from "../util/AllNeighbourhoods";
 import { getErrorMessageFromResponseCode } from "../util/ErrorMessages";
 import NeighbourhoodList from "../components/Force/NeighbourhoodList";
@@ -60,9 +60,9 @@ const ForceBio = (props) => {
 		if (!forceTele) {
 			forceTeleOutput =
 				"No number provided by database. Use 101 for non-emergency enquiries";
-		} else if (forceTele == "101") {
+		} else if (forceTele === "101") {
 			forceTeleOutput =
-				"Only non-emergency enquiries number (101) given by database";
+				"Only non-emergency enquiries number (101) given by the database.";
 		} else {
 			forceTeleOutput = forceTele;
 		}

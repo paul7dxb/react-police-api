@@ -42,7 +42,7 @@ const HomePage = () => {
 			{homeData.map((item, index) => (
 				<HomePageItem
 					key={item.title}
-					rightCard={index % 2 == 1}
+					rightCard={index % 2 === 1}
 					title={item.title}
 					targetPage={item.targetPage}
 					description={item.description}

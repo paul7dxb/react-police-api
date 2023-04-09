@@ -1,6 +1,7 @@
 .main {
   margin: 3vh auto;
   width: 90vw;
+  max-width: 1000px;
   min-height: 78vh;
   /* max-width: 80vw; */
   /* background-color: var(--palletteWhite); */

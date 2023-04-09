@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { getCrimesYearSummary } from "../../util/GetCrimes";
 import StackedBarYear from "../Charts/StackedBarYear";
 import BarChartMonth from "../Charts/BarChartMonth";
-import { useParams } from "react-router-dom";
 import Card from "../UI/Card";
 import classes from "./NeighbourhoodYearSummary.module.css";
 import Loader from "../UI/Loader";
@@ -19,12 +18,12 @@ const NeighbourhoodYearSummary = (props) => {
 	const [refinedRow, setRefinedRow] = useState(null);
 	// const [refinedDataPoint, setRefinedDataPoint] = useState(null);
 
-	const setRefinedRowDate = (date) => {
-		// console.log("newDateset");
-		setRefinedRow((prevState) => {
-			return { ...prevState, date: date };
-		});
-	};
+	// const setRefinedRowDate = (date) => {
+	// 	// console.log("newDateset");
+	// 	setRefinedRow((prevState) => {
+	// 		return { ...prevState, date: date };
+	// 	});
+	// };
 
 	const fetchYearDataHandler = useCallback(async () => {
 		setIsLoading(true);
@@ -78,6 +77,8 @@ const NeighbourhoodYearSummary = (props) => {
 				// console.log("dataClick " + date + " : " + category);
 				props.setCatDateParams({ date, category });
 				break;
+			default:
+				break
 		}
 	};
 

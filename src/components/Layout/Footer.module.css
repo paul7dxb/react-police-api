@@ -27,3 +27,14 @@
 .footer a.active {
 	color: var(--palletteAccentLight);
 }
+
+@media only screen and (max-width: 768px) {
+	.footer ul {
+		gap: 10vw;
+	}
+
+	.footer li {
+		width: 40vw;
+		text-align: center;
+	}
+}

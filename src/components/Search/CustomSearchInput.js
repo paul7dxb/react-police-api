@@ -29,7 +29,8 @@ const CustomSearchInput = ({ searchFormSubmitted }) => {
 
 	const getLocationHandler = () => {
 		setFetchingLocation(true);
-		const myLocation = getUserLocation(successLocation, errorLocation);
+		getUserLocation(successLocation, errorLocation);
+		// const myLocation = getUserLocation(successLocation, errorLocation);
 	};
 	const successLocation = (position) => {
 		setLatitudeInputValue(position.coords.latitude);

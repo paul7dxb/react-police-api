@@ -1,18 +1,39 @@
 .crimeTitle {
-    color: var(--pallettePrimary);
+	color: var(--pallettePrimary);
+	margin-top: var(--marginSmall)
 }
 
-.crimeCard{
-    width: fit-content;
-		padding: var(--paddingSmall);
+.crimeCard {
+	width: fit-content;
+	padding: var(--paddingSmall);
+	margin: var(--marginSmall);
+}
 
-		margin: var(--marginSmall);
-
+.crimeCard p {
+	/* padding-top: var(--paddingXSmall); */
+	margin: var(--marginSmall) auto;
 }
 
 @media only screen and (max-width: 768px) {
 	.crimeCard {
 		padding: 5px 10px;
+		margin: var(--marginXSmall);
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.crimeCard {
+		width: 80%;
+		padding: 5px 10px;
+		margin: var(--marginXSmall) auto;
+	}
+
+	.crimeCard p {
+		/* padding-top: var(--paddingXSmall); */
+		margin: var(--marginXSmall) var(--marginSmall);
+	}
+	.crimeCard h4 {
+		/* padding-top: var(--paddingXSmall); */
 		margin: var(--marginXSmall);
 	}
 }

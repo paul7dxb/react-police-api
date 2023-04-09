@@ -6,6 +6,7 @@ import { getCrimesMonthDetail } from "../util/GetCrimes";
 import CategoryDateCrimeList from "../components/Crime/CategoryDateCrimeList";
 import PageBanner from "../components/UI/PageBanner";
 import PageSubBanner from "../components/UI/PageSubBanner";
+import classes from "./Neighbourhood.module.css"
 
 const Neighbourhood = (props) => {
 
@@ -42,7 +43,7 @@ const Neighbourhood = (props) => {
 		return (
 			<>
 				<PageBanner>
-					<h1>Data for {areaName}</h1>
+					<h1 className={classes.title}>Data for {areaName}</h1>
 				</PageBanner>
 				<NeighbourhoodData
 					polyBoundaryQuery={polyBoundaryQuery}

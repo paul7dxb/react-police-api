@@ -16,13 +16,21 @@ const MoreInfo = () => {
 					You can check results against known discrepancies by
 					checking the known issues page on the data.police.uk
 					website:{" "}
-					<a href="https://data.police.uk/changelog/" target="_blank">
+					<a
+						href="https://data.police.uk/changelog/"
+						target="_blank"
+						rel="noreferrer"
+					>
 						https://data.police.uk/changelog/
 					</a>
 				</p>
 				<p>
 					Data is made available under the{" "}
-					<a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">
+					<a
+						href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+						target="_blank"
+						rel="noreferrer"
+					>
 						Open Government License v3.0.
 					</a>
 				</p>
@@ -48,7 +56,11 @@ const MoreInfo = () => {
 				</ul>
 				<p>
 					Find more information on the anonymisation of data here:{" "}
-					<a href="https://data.police.uk/about/#anonymisation" target="_blank">
+					<a
+						href="https://data.police.uk/about/#anonymisation"
+						target="_blank"
+						rel="noreferrer"
+					>
 						https://data.police.uk/about/#anonymisation
 					</a>
 				</p>
@@ -64,7 +76,11 @@ const MoreInfo = () => {
 				</p>
 				<p>
 					Links to publications can be found at{" "}
-					<a href="https://data.police.uk/data/statistical-data/" target="_blank">
+					<a
+						href="https://data.police.uk/data/statistical-data/"
+						target="_blank"
+						rel="noreferrer"
+					>
 						https://data.police.uk/data/statistical-data/
 					</a>
 				</p>
@@ -79,7 +95,11 @@ const MoreInfo = () => {
 				</p>
 				<p>
 					More information can be found at:{" "}
-					<a href="https://data.police.uk/docs/api-call-limits/" target="_blank">
+					<a
+						href="https://data.police.uk/docs/api-call-limits/"
+						target="_blank"
+						rel="noreferrer"
+					>
 						https://data.police.uk/docs/api-call-limits/
 					</a>
 				</p>
@@ -87,12 +107,38 @@ const MoreInfo = () => {
 			<Card>
 				<h2>Shoutouts</h2>
 				<p>
-					Police Sign photo on Home Page by{" "}
-					<a href="https://unsplash.com/pt-br/@francoisolwage?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank">
+					Photo: Police Sign on Home Page by{" "}
+					<a
+						href="https://unsplash.com/pt-br/@francoisolwage?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+						target="_blank"
+						rel="noreferrer"
+					>
 						Francois Olwage
 					</a>{" "}
 					on{" "}
-					<a href="https://unsplash.com/photos/5sBQqwoWz_w?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank">
+					<a
+						href="https://unsplash.com/photos/5sBQqwoWz_w?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+						target="_blank"
+						rel="noreferrer"
+					>
+						Unsplash
+					</a>
+				</p>
+				<p>
+					Photo: UK Map with pins on Home Page by{" "}
+					<a
+						href="https://unsplash.com/@englandtravels?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+						target="_blank"
+						rel="noreferrer"
+					>
+						Paul Marlow
+					</a>{" "}
+					on{" "}
+					<a
+						href="https://unsplash.com/photos/46Tg56viOUg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+						target="_blank"
+						rel="noreferrer"
+					>
 						Unsplash
 					</a>
 				</p>
