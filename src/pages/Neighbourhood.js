@@ -30,9 +30,15 @@ const Neighbourhood = (props) => {
 		setCatDateData(monthsCrime);
 	};
 
+	const setDateParam = (date) => {
+		console.log("newDateset")
+		setCatDateParams(prevState => {return {...prevState, date: date}})
+	}
+
 	useEffect(() => {
-		if (catDateParams.date) {
-			console.log("catDateParams useEffect")
+		console.log("catDateParams Started")
+		if (catDateParams.date && catDateParams.category) {
+			console.log("catDateParams both elems")
 			// console.log(catDateParams)
 			getMonthCrimes();
 		}
@@ -51,6 +57,7 @@ const Neighbourhood = (props) => {
 				<NeighbourhoodData
 					polyBoundaryQuery={polyBoundaryQuery}
 					setCatDateParams={setCatDateParams}
+					setDateParam={setDateParam}
 				/>
 
 				{catDateData ? (

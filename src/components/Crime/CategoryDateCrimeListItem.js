@@ -2,7 +2,7 @@ import classes from "./CategoryDateCrimeListItem.module.css";
 import Card from "../UI/Card";
 
 const CategoryDateCrimeListItem = (props) => {
-    console.log(props.streetName)
+
 	let streetName = "";
 	if (props.streetName) {
         if((props.streetName == "On or near ") && props.locationID){

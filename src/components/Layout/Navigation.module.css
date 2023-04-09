@@ -14,6 +14,7 @@
 	align-items: center;
 	font-weight: 700;
 	text-transform: uppercase;
+	padding-left: 0;
 }
 
 .header a {
@@ -53,7 +54,6 @@
 
 	.header ul {
 		display: none;
-		padding-left: 0;
 	}
 
 	.header .navbarActive {

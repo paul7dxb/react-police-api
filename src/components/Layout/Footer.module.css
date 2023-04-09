@@ -12,8 +12,9 @@
 	gap: 4rem;
 	justify-content: center;
 	align-items: center;
-  font-weight: 700;
-  text-transform: uppercase;
+	font-weight: 700;
+	text-transform: uppercase;
+	padding-left: 0;
 }
 
 .footer a {

@@ -19,6 +19,13 @@ const NeighbourhoodYearSummary = (props) => {
 	const [refinedRow, setRefinedRow] = useState(null);
 	// const [refinedDataPoint, setRefinedDataPoint] = useState(null);
 
+	const setRefinedRowDate = (date) => {
+		// console.log("newDateset");
+		setRefinedRow((prevState) => {
+			return { ...prevState, date: date };
+		});
+	};
+
 	const fetchYearDataHandler = useCallback(async () => {
 		setIsLoading(true);
 		try {
@@ -39,7 +46,7 @@ const NeighbourhoodYearSummary = (props) => {
 	}, []);
 
 	const dateSelectedHandler = (dropdown) => {
-		const chosenIndex = dropdown.target.selectedIndex -1 ; // -1 because of index for "select an option"
+		const chosenIndex = dropdown.target.selectedIndex - 1; // -1 because of index for "select an option"
 		const chosenDate = yearData.barChartLabels[chosenIndex];
 		totalsFromDate(chosenDate, chosenIndex);
 	};
@@ -50,6 +57,7 @@ const NeighbourhoodYearSummary = (props) => {
 			categoryTotals.push(arrayItem.data[index]);
 		});
 		setRefinedRow({ date, categoryTotals });
+		props.setDateParam(date);
 	};
 
 	// Click Handler
@@ -57,7 +65,7 @@ const NeighbourhoodYearSummary = (props) => {
 		switch (type) {
 			case "axisClick":
 				console.log("axisClick " + date + " #: " + labelIndex);
-				totalsFromDate(date, labelIndex)
+				totalsFromDate(date, labelIndex);
 				// let categoryTotals = [];
 				// yearData.barChartSeries.forEach(function (arrayItem) {
 				// 	categoryTotals.push(arrayItem.data[labelIndex]);
@@ -67,6 +75,7 @@ const NeighbourhoodYearSummary = (props) => {
 			case "dataClick":
 				console.log("dataClick " + date + " : " + category);
 				props.setCatDateParams({ date, category });
+				setRefinedRowDate(date)
 				break;
 		}
 	};
@@ -106,11 +115,11 @@ const NeighbourhoodYearSummary = (props) => {
 						crime and the latest update on the outcome of the crime
 						if it has been updated.
 					</p>
-				<RefinedDataSelctor
-					dateOptions={yearData.barChartLabels}
-					dateSelectedHandler={dateSelectedHandler}
-					selectedValue = {refinedRow ? refinedRow.date : null}
-				/>
+					<RefinedDataSelctor
+						dateOptions={yearData.barChartLabels}
+						dateSelectedHandler={dateSelectedHandler}
+						selectedValue={refinedRow ? refinedRow.date : null}
+					/>
 				</PageSubBanner>
 				{refinedRow ? (
 					<Card className={classes.monthGraphCard}>
