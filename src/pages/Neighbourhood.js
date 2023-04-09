@@ -8,7 +8,6 @@ import PageBanner from "../components/UI/PageBanner";
 import PageSubBanner from "../components/UI/PageSubBanner";
 
 const Neighbourhood = (props) => {
-	console.log("new Render Neighbourhood")
 
 	const loaderData = useLoaderData();
 	const polyBoundaryQuery = loaderData.polyBoundaryQuery;
@@ -18,8 +17,6 @@ const Neighbourhood = (props) => {
 		category: null,
 	});
 	const [catDateData, setCatDateData] = useState(null);
-
-	console.log(areaName);
 
 	const getMonthCrimes = async () => {
 		const monthsCrime = await getCrimesMonthDetail({
@@ -31,21 +28,15 @@ const Neighbourhood = (props) => {
 	};
 
 	const setDateParam = (date) => {
-		console.log("newDateset")
 		setCatDateParams(prevState => {return {...prevState, date: date}})
 	}
 
 	useEffect(() => {
-		console.log("catDateParams Started")
 		if (catDateParams.date && catDateParams.category) {
-			console.log("catDateParams both elems")
-			// console.log(catDateParams)
 			getMonthCrimes();
 		}
 	}, [catDateParams]);
 
-	console.log("catDateData");
-	console.log(catDateData);
 
 	if (polyBoundaryQuery) {
 		return (

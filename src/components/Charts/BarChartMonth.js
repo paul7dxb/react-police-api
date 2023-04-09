@@ -24,7 +24,7 @@ const BarChartMonth = (props) => {
 					// console.log(selectedCategory);
 
 					props.onClick({
-						type: "dataClick",
+						type: "dataClickMonth",
 						date: props.date,
 						category: selectedCategory,
 					});
@@ -38,7 +38,7 @@ const BarChartMonth = (props) => {
 					// console.log(selectedCategory)
 
 					props.onClick({
-						type: "dataClick",
+						type: "dataClickMonth",
 						date: props.date,
 						category: selectedCategory,
 					});

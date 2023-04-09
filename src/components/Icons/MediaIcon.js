@@ -11,8 +11,6 @@ const MediaIcon = ({icon}) => {
     }
 
     const iconType = icon.toUpperCase()
-    console.log(iconType)
-
 
     switch (iconType){
         case "FACEBOOK":

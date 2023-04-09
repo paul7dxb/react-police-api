@@ -61,7 +61,13 @@ const NeighbourhoodYearSummary = (props) => {
 	};
 
 	// Click Handler
-	const yearGraphClickedHandler = ({ type, date, category, labelIndex }) => {
+	const graphClickedHandler = ({ type, date, category, labelIndex }) => {
+		// console.log("labelIndex")
+		// console.log(labelIndex)
+		// console.log("date")
+		// console.log(date)
+		// console.log("cate")
+		// console.log(category)
 		switch (type) {
 			case "axisClick":
 				console.log("axisClick " + date + " #: " + labelIndex);
@@ -74,8 +80,15 @@ const NeighbourhoodYearSummary = (props) => {
 				break;
 			case "dataClick":
 				console.log("dataClick " + date + " : " + category);
+				totalsFromDate(date, labelIndex);
 				props.setCatDateParams({ date, category });
-				setRefinedRowDate(date)
+				// setRefinedRowDate(date)
+				break;
+			case "dataClickMonth":
+				console.log("dataClick " + date + " : " + category);
+				// totalsFromDate(date, labelIndex);
+				props.setCatDateParams({ date, category });
+				// setRefinedRowDate(date)
 				break;
 		}
 	};
@@ -99,7 +112,7 @@ const NeighbourhoodYearSummary = (props) => {
 					<StackedBarYear
 						barChartSeries={yearData.barChartSeries}
 						barChartLabels={yearData.barChartLabels}
-						onClick={yearGraphClickedHandler}
+						onClick={graphClickedHandler}
 					/>
 				</Card>
 				<PageSubBanner>
@@ -121,13 +134,13 @@ const NeighbourhoodYearSummary = (props) => {
 						selectedValue={refinedRow ? refinedRow.date : null}
 					/>
 				</PageSubBanner>
-				{refinedRow ? (
+				{refinedRow && refinedRow.categoryTotals ? (
 					<Card className={classes.monthGraphCard}>
 						<BarChartMonth
 							date={refinedRow.date}
 							barChartSeries={refinedRow.categoryTotals}
 							barChartLabels={yearData.allCategoriesArray}
-							onClick={yearGraphClickedHandler}
+							onClick={graphClickedHandler}
 						/>
 					</Card>
 				) : undefined}
