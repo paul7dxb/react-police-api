@@ -1,4 +1,4 @@
-import { getErrorMessageFromResponseCode } from "./ErrorMessages";
+import { getErrorMessageFromResponseCode } from "./eerrorMessages";
 
 
 export const getAllNeighbourhoods = async(forceID) => {

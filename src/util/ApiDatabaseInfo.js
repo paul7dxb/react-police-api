@@ -1,4 +1,4 @@
-import { getErrorMessageFromResponseCode } from "./ErrorMessages";
+import { getErrorMessageFromResponseCode } from "./eerrorMessages";
 
 export const getLastUpdated = async () => {
 	let errorMessage = null;
